@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Information</title>
+    <style>
+        body {
+            background-color: #c2f382;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #a9db26;
+        }
+
+        input[type=text] {
+            padding: 8px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid green;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<h1 style="color:#06a94d;">Doctors Information </h1>
+
+<input type="text" id="searchInput" placeholder="Search for doctors...">
+<button onclick="searchDoctors()">Search</button>
+
+<table id="doctorTable">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Specialization</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Description</th>
+        <th>Rate</th>
+        <!-- Add more columns as needed -->
+    </tr>
+    </thead>
+    <!-- Table body goes here -->
+    <tbody id="doctorsTableBody"></tbody>
+</table>
+
+<script>
+    // Fetch all doctors when the page loads
+
+    window.onload = function () {
+        fetchDoctors();
+    };
+
+    // Function to fetch all doctors
+    function fetchDoctors() {
+        fetch(`http://localhost:8080/doctors/all`)
+            .then(response => response.json())
+            .then(data => {
+                updateDoctorsTable(data)
+                console.log(data)
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Function to search doctors
+    function searchDoctors() {
+        var query = document.getElementById('searchInput').value;
+
+        if (query.trim() === '') {
+            // If the search query is empty, fetch all doctors
+            fetchDoctors();
+        } else {
+            // If there is a search query, make API request to search doctors
+            fetch(`/doctors/search?query=${query}`)
+                .then(response => response.json())
+                .then(data => updateDoctorsTable(data))
+                .catch(error => console.error('Error:', error));
+        }
+    }
+
+    // Function to update the doctors table
+    function updateDoctorsTable(doctors) {
+        var tableBody = document.getElementById('doctorsTableBody');
+        tableBody.innerHTML = '';
+        console.log(tableBody)
+        doctors.forEach(doctor => {
+            var row = tableBody.insertRow();
+            row.insertCell(0).textContent = doctor.firstName;
+            row.insertCell(1).textContent = doctor.lastName;
+            row.insertCell(2).textContent = doctor.specialization;
+            row.insertCell(3).textContent = doctor.phoneNumber;
+            row.insertCell(4).textContent = doctor.email;
+            row.insertCell(5).textContent = doctor.description;
+            row.insertCell(6).textContent = doctor.rate;
+        });
+    }
+</script>
+</body>
+</html>

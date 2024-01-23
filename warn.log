@@ -1,0 +1,2 @@
+12:57:28.869 [main] INFO  c.e.e.service.RegistrationService - Registering user with email: john@example.com
+12:57:28.869 [main] WARN  c.e.e.service.RegistrationService - Password does not meet strength requirements for user with email: john@example.com
