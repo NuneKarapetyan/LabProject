@@ -6,9 +6,10 @@ import com.example.epamProject.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class RegistrationController {
 
     private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
@@ -39,10 +40,12 @@ public class RegistrationController {
         return "failed";  // Assumes "failed.html" in templates directory
     }
 
+
     @GetMapping("/success")
     public String success() {
-        return "success.html";
+        return "success";
     }
+
 
     @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
     public String confirmUserAccount(@RequestParam("token") String confirmationToken) {

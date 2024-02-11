@@ -227,8 +227,8 @@
         <div class="slide-controls">
             <input type="radio" name="slide" id="login" checked>
             <input type="radio" name="slide" id="signup">
-            <label for="login" class="slide login">Login</label>
-            <label for="signup" class="slide signup">Signup</label>
+            <label for="login" class="slide login">Sign In</label>
+            <label for="signup" class="slide signup">Sign Up</label>
             <div class="slider-tab"></div>
         </div>
 
@@ -251,7 +251,7 @@
 
                 <div class="field btn">
                     <div class="btn-layer"></div>
-                    <button type="submit" class="btn btn-rounded btn-primary btn-block">Login</button>
+                    <button type="submit" class="btn btn-rounded btn-primary btn-block">Sign In</button>
                 </div>
 
                 <div class="signup-link">
@@ -278,7 +278,7 @@
                 </div>
                 <div class="field btn">
                     <button  type="submit" id="reg" class="btn btn-rounded btn-primary btn-block"
-                            onclick="checkPassword()">Register
+                            onclick="checkPassword()">Sign Up
                     </button>
                 </div>
             </form>
@@ -332,7 +332,54 @@
          console.log("INVALID");
          return;
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Add event listener to the login form
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the username and password from the form
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Call the authenticateUser function with the user's credentials
+            authenticateUser(username, password);
+        });
+    });
+
+    function authenticateUser(username, password) {
+        // Make a request to your authentication endpoint to get the JWT token
+        fetch('http://localhost:8080/authenticate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username: username, password: password })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to authenticate user');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Assuming the response contains the JWT token
+                const token = data.token;
+
+                // Store the token in localStorage
+                localStorage.setItem('jwtToken', token);
+
+                // Redirect the user to the medicint.html page
+                window.location.href = 'medicint.html'; // Redirect to the medicint.html page
+            })
+            .catch(error => {
+                console.error('Error authenticating user:', error);
+                // Optionally, display an error message to the user
+                alert('Authentication failed. Please try again.');
+            });
+    }
 </script>
+
 </body>
 
 </html>

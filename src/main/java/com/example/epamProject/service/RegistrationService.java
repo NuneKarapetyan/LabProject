@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @Service
 public class RegistrationService {
@@ -41,7 +42,7 @@ public class RegistrationService {
     @Transactional
     public ResponseEntity<String> registerUser(RegistrationDto userDto) {
         logger.info("Registering user with email: {}", userDto.getEmail());
-
+        ResponseEntity<String> passwordCheckResult = isPasswordStrong(userDto.getPassword());
         if (userRepository.existsByEmail(userDto.getEmail())) {
             logger.warn("Email {} is already in use", userDto.getEmail());
 
@@ -52,9 +53,8 @@ public class RegistrationService {
             logger.warn("Fields cannot be empty for user with email: {}", userDto.getEmail());
             return new ResponseEntity<>("Fields cannot be empty", HttpStatus.BAD_REQUEST);
         }
-        if (!isPasswordStrong(userDto.getPassword())) {
-            logger.warn("Password does not meet strength requirements for user with email: {}", userDto.getEmail());
-            return new ResponseEntity<>("Password does not meet strength requirements", HttpStatus.BAD_REQUEST);
+        if (passwordCheckResult.getStatusCode() != HttpStatus.OK) {
+            return passwordCheckResult; // Return the response if password is not strong
         }
         if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
             logger.warn("Password and confirm password does not match for user with email: {}", userDto.getEmail());
@@ -108,11 +108,46 @@ public class RegistrationService {
         }
         return "failed";
     }
-    private boolean isPasswordStrong(String password) {
+  /*  private boolean isPasswordStrong(String password) {
         // Implement your password strength check logic here
         // Example: At least 8 characters, containing at least one uppercase letter, one lowercase letter, and one digit
         return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$");
-    }
+    }*/
+
+  public ResponseEntity<String> isPasswordStrong(String password) {
+      // Password must be at least 8 characters long
+      if (password.length() < 8) {
+          logger.warn("Password must be at least 8 characters long.");
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must be at least 8 characters long.");
+      }
+
+      // Check for presence of uppercase letters
+      if (!Pattern.compile("[A-Z]").matcher(password).find()) {
+          logger.warn("Password must contain at least one uppercase letter.");
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one uppercase letter.");
+      }
+
+      // Check for presence of lowercase letters
+      if (!Pattern.compile("[a-z]").matcher(password).find()) {
+          logger.warn("Password must contain at least one lowercase letter.");
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one lowercase letter.");
+      }
+
+      // Check for presence of numbers
+      if (!Pattern.compile("[0-9]").matcher(password).find()) {
+          logger.warn("Password must contain at least one number.");
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one number.");
+      }
+
+      // Check for presence of symbols
+      if (!Pattern.compile("[^A-Za-z0-9]").matcher(password).find()) {
+          logger.warn("Password must contain at least one symbol.");
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one symbol.");
+      }
+
+      logger.info("Password is strong!");
+      return ResponseEntity.ok("Password is strong!");
+  }
     public static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {

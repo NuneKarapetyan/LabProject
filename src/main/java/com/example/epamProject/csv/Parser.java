@@ -220,7 +220,7 @@ public class Parser {
                     medicine.setExpirationDate(LocalDate.now()); // Set a default value or handle it as needed
                 }
                 medicine.setAgeRestriction(Integer.parseInt(csvRecord.get("age_restriction")));
-                medicine.setDoctorsNote(Integer.parseInt(csvRecord.get("doctors_note")));
+                medicine.setDoctorsNote(Boolean.parseBoolean(csvRecord.get("doctors_note")));
                 medicine.setRate(Double.parseDouble(csvRecord.get("rate")));
                 medicine.setImage(csvRecord.get("image"));
                 medicine.setDescription(csvRecord.get("description"));

@@ -37,7 +37,7 @@ public class MedicineEntity {
     private int ageRestriction;
 
     @Column(name = "doctors_note")
-    private int doctorsNote;
+    private boolean doctorsNote;
 
     @Column(name = "rate")
     private double rate;
@@ -46,4 +46,8 @@ public class MedicineEntity {
     private String image;
     @Column(name = "description",length = 65555)
     private String description;
+
+    public boolean isRequiresDoctorReceipt() {
+        return doctorsNote;
+    }
 }

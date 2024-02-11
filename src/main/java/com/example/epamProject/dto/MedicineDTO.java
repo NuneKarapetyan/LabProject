@@ -20,7 +20,7 @@ public class MedicineDTO {
     private int availableQuantity;
     private LocalDate expirationDate;
     private int ageRestriction;
-    private int doctorsNote;
+    private boolean doctorsNote;
     private double rate;
     private String image;
     private String description;
