@@ -5,5 +5,6 @@ public enum BasketItemStatus {
     APPROVED,
     REJECTED,
     ADDED,
-    RECEIPT_UPLOADED
+    RECEIPT_UPLOADED,
+    BOUGHT
 }

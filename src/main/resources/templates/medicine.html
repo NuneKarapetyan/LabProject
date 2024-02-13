@@ -24,6 +24,19 @@
             display: flex;
         }
 
+        .medicines-list{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .medicineItem{
+            width: 100%;
+            height: 35px;
+            background-color: #999999;
+            display: flex;
+            align-items: center;
+        }
+
         .navigation ul li {
             margin-right: 200px;
 
@@ -104,6 +117,7 @@
     <ul>
         <li><a href="#medicines"  >Medicines</a></li>
         <li><a href="#doctors">Doctors</a></li>
+        <li><a href="userProfile.html">My Profile</a></li>
     </ul>
 </div>
 
@@ -148,7 +162,6 @@
 </div>
 
 <script>
-
         document.addEventListener("DOMContentLoaded", function () {
         // Function to fetch and display medicines based on the selected letter
             function fetchAndDisplayMedicines(letter) {
@@ -183,7 +196,8 @@
                         medicinesList.innerHTML = ''; // Clear previous content
                         data.forEach(medicine => {
                             const medicineItem = document.createElement('div');
-                            medicineItem.textContent = medicine.name;
+                            medicineItem.innerText = medicine;
+                            medicineItem.classList.add("medicineItem")
                             medicinesList.appendChild(medicineItem);
                         });
                     })

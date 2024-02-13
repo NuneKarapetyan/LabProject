@@ -75,7 +75,7 @@ public class RegistrationService {
         RoleEntity userRole = roleRepository.findByName("ROLE_USER")
                 .orElseThrow(() -> new RuntimeException("Role not found"));  // Adjust the role name accordingly
         user.setRole(userRole);
-
+        user.setImage("C:\\Users\\User\\Downloads\\epamProject\\epamProject\\src\\main\\resources\\userImages\\3da39-no-user-image-icon-27.webp");
         // Save the user to the database
         userRepository.save(user);
         String token = UUID.randomUUID().toString();

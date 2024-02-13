@@ -1,5 +1,7 @@
 package com.example.epamProject.service;
 
+import com.example.epamProject.dto.BasketDto;
+import com.example.epamProject.dto.ItemDto;
 import com.example.epamProject.entity.BasketItemEntity;
 import com.example.epamProject.entity.BasketItemStatus;
 import com.example.epamProject.entity.MedicineEntity;
@@ -18,6 +20,8 @@ import org.thymeleaf.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -32,7 +36,7 @@ public class BasketService {
     @Autowired
     private UserRepository userRepository;
     private static final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
-    private final String UPLOAD_DIRECTORY ="C:\\Users\\User\\Downloads\\epamProject\\epamProject\\src\\main\\resources\\receipts\\";
+    private final String UPLOAD_DIRECTORY = "C:\\Users\\User\\Downloads\\epamProject\\epamProject\\src\\main\\resources\\receipts\\";
 
 
     public ResponseEntity<String> addMedicineToBasket(String username, String medicineName, boolean hasDoctorReceipt) {
@@ -65,7 +69,10 @@ public class BasketService {
         basketItem.setUser(user);
         basketItem.setMedicine(medicine);
         basketItem.setQuantity(1); // Assuming the quantity is 1 for simplicity
-        basketItem.setStatus(BasketItemStatus.ADDED);
+        if (!medicine.isRequiresDoctorReceipt())
+            basketItem.setStatus(BasketItemStatus.APPROVED);
+        else
+            basketItem.setStatus(BasketItemStatus.ADDED);
         basketRepository.save(basketItem);
         logger.info(medicineName + "is added to basket");
 
@@ -90,10 +97,10 @@ public class BasketService {
             if (medicine == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Medicine not found with name: " + medicineName);
             }
-                if(doctorReceipt.isEmpty() || doctorReceipt==null){
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Doctors Receipt is missing");
+            if (doctorReceipt.isEmpty() || doctorReceipt == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Doctors Receipt is missing");
 
-                }
+            }
             // Check if the medicine requires a doctor receipt
             if (!medicine.isRequiresDoctorReceipt()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Doctor's receipt is not required for this medicine.");
@@ -101,7 +108,7 @@ public class BasketService {
 
             // Save the uploaded receipt to the local directory
             String fileName = doctorReceipt.getOriginalFilename();
-            String filePath =  UPLOAD_DIRECTORY + fileName;
+            String filePath = UPLOAD_DIRECTORY + fileName;
             logger.info("file path is " + filePath);
             File file = new File(filePath);
             doctorReceipt.transferTo(file);
@@ -130,6 +137,91 @@ public class BasketService {
         }
         return basketItem.getPath();
     }
+
+    public BasketDto getUserBasket(String username) {
+        // Retrieve basket items for the given username
+        List<BasketItemEntity> basketItems = basketRepository.findByUserEmail(username);
+
+        // Initialize variables to store basket details
+        List<ItemDto> items = new ArrayList<>();
+        double totalCost = 0.0;
+
+        // Iterate through basket items to extract necessary information
+        for (BasketItemEntity basketItem : basketItems) {
+            if (basketItem.getStatus() == BasketItemStatus.ADDED || basketItem.getStatus() == BasketItemStatus.APPROVED) {
+                MedicineEntity medicine = basketItem.getMedicine();
+                int quantity = basketItem.getQuantity();
+                double price = medicine.getPrice();
+                double itemCost = quantity * price;
+
+                // Add item details to the list
+                items.add(new ItemDto(medicine.getName(), quantity, itemCost,basketItem.getStatus()));
+
+                // Update total cost
+                totalCost += itemCost;
+            }
+        }
+
+        // Create and return BasketDto object
+        return new BasketDto(username, items, totalCost);
+
+    }
+    public ResponseEntity<String> removeMedicineFromBasket(String username, String medicineName) {
+        // Find the basket item by username and medicine name
+        BasketItemEntity basketItem = basketRepository.findByUserEmailAndMedicineName(username, medicineName);
+
+        // If basketItem is found, remove it from the repository
+        if (basketItem != null) {
+            basketRepository.delete(basketItem);
+            return ResponseEntity.ok("Medicine removed from basket successfully.");
+        }
+
+        // If basketItem is not found, return false
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Medicine not found in the basket.");
+
+    }
+
+    public boolean buyMedicines(String username) {
+        // Retrieve user's basket
+        BasketDto userBasket = getUserBasket(username);
+
+        if (userBasket == null || userBasket.getItems().isEmpty()) {
+            return false; // No items in the basket
+        }
+
+        // Check if all items are approved for purchase
+        for (ItemDto item : userBasket.getItems()) {
+            if (!item.getStatus().equals(BasketItemStatus.APPROVED)) {
+                return false; // Cannot buy if any item is not approved
+            }
+        }
+
+        // Process payment (Assuming successful payment)
+        // Deduct total cost from user's account balance or initiate payment gateway transaction
+
+        // Update basket status to BOUGHT or remove items from basket
+        return updateBasketStatus(username,BasketItemStatus.BOUGHT);
+    }
+    public boolean updateBasketStatus(String username, BasketItemStatus status) {
+        // Retrieve basket items associated with the provided username
+        List<BasketItemEntity> basketItems = basketRepository.findByUserEmail(username);
+
+        if (basketItems.isEmpty()) {
+            // No basket items found for the user
+            return false;
+        }
+
+        // Update the status of each basket item
+        for (BasketItemEntity basketItem : basketItems) {
+            basketItem.setStatus(status);
+        }
+
+        // Save the updated basket items back to the database
+        basketRepository.saveAll(basketItems);
+
+        return true;
+    }
+
 }
 
 

@@ -1,5 +1,6 @@
 package com.example.epamProject.controller;
 
+import com.example.epamProject.dto.BasketDto;
 import com.example.epamProject.service.BasketService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -77,6 +78,70 @@ public class BasketController {
 
         return basketService.uploadDoctorReceipt(username, medicineName, doctorReceipt);
     }
+
+    @GetMapping("/view")
+    public ResponseEntity<BasketDto> getUserBasket(@RequestParam("username") String username) {
+        BasketDto basket = basketService.getUserBasket(username);
+        if (basket != null) {
+            return ResponseEntity.ok(basket);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @DeleteMapping("/remove")
+    public ResponseEntity<String> removeMedicineFromBasket(@RequestParam("username") String username,
+                                                           @RequestParam("medicineName") String medicineName) {
+       return basketService.removeMedicineFromBasket(username, medicineName);
+
+    }
+    @PostMapping("/buy")
+    public ResponseEntity<String> buyMedicines(@RequestParam("username") String username) {
+        boolean bought = basketService.buyMedicines(username);
+
+        if (bought) {
+            return ResponseEntity.ok("Medicines bought successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to buy medicines.");
+        }
+    }
+
+
+
+   /* // Endpoint to remove a medicine from user's basket
+    @DeleteMapping("/remove")
+    public ResponseEntity<String> removeMedicineFromBasket(
+            @RequestParam("username") String username,
+            @RequestParam("medicineName") String medicineName) {
+        if (basketService.removeMedicineFromBasket(username, medicineName)) {
+            return ResponseEntity.ok("Medicine removed from basket successfully.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Endpoint to approve/reject medicine in basket
+    @PutMapping("/medicine/status")
+    public ResponseEntity<String> updateMedicineStatusInBasket(
+            @RequestParam("username") String username,
+            @RequestParam("medicineName") String medicineName,
+            @RequestParam("status") String status) {
+        if (basketService.updateMedicineStatusInBasket(username, medicineName, status)) {
+            return ResponseEntity.ok("Medicine status updated successfully.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Endpoint to buy medicines in basket
+    @PostMapping("/buy")
+    public ResponseEntity<String> buyMedicinesInBasket(@RequestParam("username") String username) {
+        if (basketService.buyMedicinesInBasket(username)) {
+            return ResponseEntity.ok("Medicines bought successfully.");
+        } else {
+            return ResponseEntity.badRequest().body("Cannot buy medicines in the basket.");
+        }
+    }*/
 }
 
 //upload file tvecinq file dexi anuny u usernamey db um pahum enq heto erb knopken aktivanum a add enq anum baketum
