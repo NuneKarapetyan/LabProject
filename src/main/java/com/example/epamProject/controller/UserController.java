@@ -2,9 +2,15 @@ package com.example.epamProject.controller;
 
 
 import com.example.epamProject.csv.ResponseMessage;
+import com.example.epamProject.dto.AddressDto;
+import com.example.epamProject.service.StorageService;
 import com.example.epamProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,11 +22,16 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    @Value("${file.upload-dir}")
+    private String uploadDir;
+    private final StorageService storageService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, StorageService storageService) {
         this.userService = userService;
+        this.storageService = storageService;
     }
+
 
     @PostMapping("/import-csv")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -61,13 +72,28 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         System.out.println(username);
-            try {
-                userService.uploadProfilePicture(username, file);
-                return ResponseEntity.ok("Profile picture uploaded successfully.");
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("Failed to upload profile picture: " + e.getMessage());
-            }
+        return userService.uploadProfilePicture(username, file);
+
+    }
+
+    @GetMapping("/userImages/{fileName:.+}")
+    public ResponseEntity<Resource> serveFile(@PathVariable String fileName) {
+        Resource file = storageService.loadAsResource(fileName);
+        // Determine the media type based on the file extension
+        MediaType mediaType = MediaType.IMAGE_JPEG; // Default to JPEG
+        if (fileName.endsWith(".png")) {
+            mediaType = MediaType.IMAGE_PNG;
+        } else if (fileName.endsWith(".gif")) {
+            mediaType = MediaType.IMAGE_GIF;
+        }
+
+        // Set the Content-Type header to the appropriate media type
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(mediaType);
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(file);
     }
 
     @PostMapping("/changePassword")
@@ -92,6 +118,7 @@ public class UserController {
 
         return userService.changeEmailAddress(username, changeEmailRequest);
     }
+
     @DeleteMapping("/deleteAccount")
     @CrossOrigin("http://localhost:63342/")
     public ResponseEntity<?> deleteAccount() {
@@ -106,6 +133,27 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to delete account: " + e.getMessage());
         }
+    }
+
+    @PatchMapping("/setAddress")
+    @CrossOrigin("http://localhost:63342/")
+    public ResponseEntity<String> setAddress(@RequestBody AddressDto addressDTO) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        userService.setAddress(username, addressDTO.getCountry(), addressDTO.getCity(),
+                addressDTO.getStreet(), addressDTO.getBuilding(), addressDTO.getPostalCode());
+        return ResponseEntity.ok("Address updated successfully.");
+    }
+
+    @PostMapping("/setPhoneNumber")
+    @CrossOrigin("http://localhost:63342/")
+    public ResponseEntity<?> setPhoneNumber(@RequestBody String phoneNumber) {
+        // Get the username from the JWT token
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        return userService.setPhoneNumber(username, phoneNumber);
+
     }
 
 }

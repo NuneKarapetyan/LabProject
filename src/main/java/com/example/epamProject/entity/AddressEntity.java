@@ -31,6 +31,6 @@ public class AddressEntity {
     @Column(name = "building", nullable = false)
     private String building;
 
-    @Column(name = "postal_code")
+    @Column(name = "postal_code", nullable = false)
     private String postalCode;
 }

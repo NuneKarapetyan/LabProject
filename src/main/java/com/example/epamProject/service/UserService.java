@@ -115,7 +115,7 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<String> uploadProfilePicture(String username, MultipartFile file) throws IOException {
+    public ResponseEntity<String> uploadProfilePicture(String username, MultipartFile file)  {
         try {
             UserEntity user = userRepository.findByEmail(username);
             if (user != null) {
@@ -125,13 +125,12 @@ public class UserService {
 
                     // Get the file name and save the uploaded file to the directory
                     String fileName = file.getOriginalFilename();
+                    System.out.println(fileName);
                     Path filePath = Paths.get(DIRECTORY, fileName);
-
                     Files.write(filePath, file.getBytes());
-
                     // Update the user's profile picture path in the database
                     String imagePath = DIRECTORY + File.separator + fileName;
-                    user.setImage(imagePath);
+                    user.setImage("http://localhost:8080/users/userImages/" +fileName);
                     userRepository.save(user);
                     return ResponseEntity.ok().body("Profile picture has set successfully");
                 } else {
@@ -237,4 +236,50 @@ public class UserService {
             userRepository.delete(user);
 
     }
+
+    @Transactional
+    public ResponseEntity<String> setAddress(String username, String country, String city, String street, String building, String postalCode) {
+        UserEntity user = userRepository.findByEmail(username);
+      if(user == null){
+          return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with username:" + username);
+      }
+      if(country.isEmpty() || city.isEmpty() ||street.isEmpty() || building.isEmpty() ||postalCode.isEmpty()){
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fields cannot be empty");
+      }
+        AddressEntity address = user.getAddress();
+        if (address == null) {
+            address = new AddressEntity();
+        }
+        address.setCountry(country);
+        address.setCity(city);
+        address.setStreet(street);
+        address.setBuilding(building);
+        address.setPostalCode(postalCode);
+
+        user.setAddress(address);
+
+        userRepository.save(user);
+        return ResponseEntity.ok().body("Address has changed successfully");
+    }
+
+        @Transactional
+        public ResponseEntity<String> setPhoneNumber(String username, String phoneNumber) {
+            UserEntity user = userRepository.findByEmail(username);
+            if(user == null){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with username:" + username);
+            }
+            if(phoneNumber.isEmpty()){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number cannot be empty");
+            }
+            if(phoneNumber.length()>15){
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("the phone number cannot contain more than 15 digits");
+            }
+            if (!phoneNumber.matches("^\\+?[0-9 ]+$")) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("Invalid phone number format. Phone number should contain only digits and spaces, and should start with '+' if present.");
+            }
+            user.setPhoneNumber(phoneNumber);
+            userRepository.save(user);
+            return ResponseEntity.ok().body("Phone Number has changed successfully");
+        }
 }
