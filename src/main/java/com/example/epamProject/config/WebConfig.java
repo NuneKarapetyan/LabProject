@@ -24,11 +24,13 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setSuffix(".html");
         registry.viewResolver(resolver);
     }
+
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/userImages/");
     }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

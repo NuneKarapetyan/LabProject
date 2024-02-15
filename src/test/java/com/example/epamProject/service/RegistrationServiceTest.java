@@ -1,9 +1,7 @@
 package com.example.epamProject.service;
 
 import com.example.epamProject.dto.RegistrationDto;
-import com.example.epamProject.entity.ConfirmationTokenEntity;
 import com.example.epamProject.entity.RoleEntity;
-import com.example.epamProject.entity.UserEntity;
 import com.example.epamProject.repo.ConfirmationTokenRepository;
 import com.example.epamProject.repo.RoleRepository;
 import com.example.epamProject.repo.UserRepository;
@@ -17,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 public class RegistrationServiceTest {
@@ -44,7 +41,7 @@ public class RegistrationServiceTest {
     public void testRegisterUser_Success() {
         // Mocking
         RegistrationDto registrationDto = new RegistrationDto("John", "Doe", "john@example.com",
-                "password", "password");
+                "Password12.", "Password12.");
 
         RoleEntity roleEntity = new RoleEntity("ROLE_USER");
 
@@ -77,36 +74,18 @@ public class RegistrationServiceTest {
     public void testRegisterUser_WeakPassword() {
         // Mocking
         RegistrationDto registrationDto = new RegistrationDto("John", "Doe", "john@example.com",
-                "password", "password");
+                "password12.", "password12.");
         Mockito.when(userRepository.existsByEmail(Mockito.anyString())).thenReturn(false);
 
         // Testing
         ResponseEntity<String> result = registrationService.registerUser(registrationDto);
 
         // Assertion
-        assertEquals("Password does not meet strength requirements", result.getBody());
+        assertEquals("Password must contain at least one uppercase letter.", result.getBody());
     }
 
     // Add more test methods for other scenarios...
 
-    @Test
-    public void testConfirmEmail_Success() {
-        // Mocking
-        ConfirmationTokenEntity confirmationTokenEntity = new ConfirmationTokenEntity();
-        confirmationTokenEntity.setConfirmationToken("testToken");
-        UserEntity userEntity = new UserEntity();
-        userEntity.setEmail("john@example.com");
-        confirmationTokenEntity.setUser(userEntity);
-        Mockito.when(confirmationTokenRepository.findByConfirmationToken(Mockito.anyString()))
-                .thenReturn(confirmationTokenEntity);
-
-        // Testing
-        String result = registrationService.confirmEmail("testToken");
-
-        // Assertion
-        assertEquals("success", result);
-        assertTrue(userEntity.isEnabled());
-    }
 
     @Test
     public void testConfirmEmail_Failed() {

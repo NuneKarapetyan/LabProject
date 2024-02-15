@@ -10,24 +10,8 @@ import org.springframework.web.context.request.RequestContextListener;
 import java.util.Properties;
 
 @Configuration
-public class AppConfig  {
-   /* private final UserRepository repository;
+public class AppConfig {
 
-    public AppConfig(UserRepository repository) {
-        this.repository = repository;
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> (UserDetails) repository.findByEmail(username);
-    }
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }*/
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -43,17 +27,19 @@ public class AppConfig  {
 
         return mailSender;
     }
+
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
     }
-   /* @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }*/
-   @Bean
-   public RequestContextListener requestContextListener() {
-       return new RequestContextListener();
-   }
+
+    /* @Bean
+     public PasswordEncoder passwordEncoder() {
+         return new BCryptPasswordEncoder();
+     }*/
+    @Bean
+    public RequestContextListener requestContextListener() {
+        return new RequestContextListener();
+    }
 
 }

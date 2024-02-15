@@ -12,6 +12,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class RegistrationDto {
+
     @NotBlank
     private String firstName;
     @NotBlank

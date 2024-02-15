@@ -1,7 +1,6 @@
 package com.example.epamProject.controller;
 
 import com.example.epamProject.service.AdminReceiptService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,16 +24,9 @@ public class AdminReceiptController {
         String medicineName = request.getMedicineName();
         String username = request.getUsername();
         boolean isValid = request.isValid();
-
         // Call the service layer to validate the receipt
-        boolean validationSuccessful = adminReceiptService.validateReceipt(medicineName, username, isValid);
+        return  adminReceiptService.validateReceipt(medicineName, username, isValid);
 
-        if (validationSuccessful) {
-            return ResponseEntity.ok("Receipt validation status updated successfully.");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to update receipt validation status.");
-        }
     }
 
 }

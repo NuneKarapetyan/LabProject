@@ -2,6 +2,7 @@ package com.example.epamProject.service;
 
 import com.example.epamProject.controller.UserProfileResponse;
 import com.example.epamProject.csv.Parser;
+import com.example.epamProject.dto.AddressDto;
 import com.example.epamProject.dto.UserDto;
 import com.example.epamProject.entity.AddressEntity;
 import com.example.epamProject.entity.ConfirmationTokenEntity;
@@ -15,7 +16,6 @@ import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -43,7 +42,6 @@ public class UserService {
     private final Parser parser;
     private final ModelMapper modelMapper;
     private final PasswordEncoder encoder;
-    private final RegistrationService registrationService;
     private final ConfirmationTokenRepository tokenRepository;
     private final BasketRepository basketRepository;
     private static final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
@@ -51,16 +49,17 @@ public class UserService {
 
     private final String DIRECTORY = "C:\\Users\\User\\Downloads\\epamProject\\epamProject\\src\\main\\resources\\userImages";
 
-    @Autowired
+
     public UserService(
             UserRepository userRepository,
             Parser parser,
-            ModelMapper modelMapper, PasswordEncoder encoder, RegistrationService registrationService, ConfirmationTokenRepository tokenRepository, BasketRepository basketRepository, AddressRepository addressRepository) {
+            ModelMapper modelMapper, PasswordEncoder encoder,
+            ConfirmationTokenRepository tokenRepository,
+            BasketRepository basketRepository, AddressRepository addressRepository) {
         this.userRepository = userRepository;
         this.parser = parser;
         this.modelMapper = modelMapper;
         this.encoder = encoder;
-        this.registrationService = registrationService;
         this.tokenRepository = tokenRepository;
         this.basketRepository = basketRepository;
         this.addressRepository = addressRepository;
@@ -68,7 +67,8 @@ public class UserService {
 
     public void save(MultipartFile file) {
         try {
-            System.out.printf(">>>>>>>>>>>>>Starting the CSV import %s%n", new Date());
+
+            logger.info(">>>>>>>>>>>>>Starting the CSV import %s%n" + new Date());
             List<UserEntity> users = parser.csvToUserEntity(file.getInputStream());
             // Remove users with email addresses that already exist in the database
             List<String> existingUserEmails = userRepository.getAllUserEmails();
@@ -89,7 +89,7 @@ public class UserService {
             }
 
             userRepository.saveAll(users);
-            System.out.printf(">>>>>>>>>>>>>Ending the CSV import %s%n", new Date());
+            logger.info(">>>>>>>>>>>>>Ending the CSV import %s%n" + new Date());
         } catch (IOException e) {
             throw new CSVImportException("Failed to store CSV data: " + e.getMessage());
         }
@@ -125,17 +125,15 @@ public class UserService {
         try {
             UserEntity user = userRepository.findByEmail(username);
             if (user != null) {
-                if (!file.isEmpty() && file != null) {
-                    // Check if the directory exists, if not, create it
-                    File directory = new File(DIRECTORY);
-
+                if (file != null && !file.isEmpty()) {
+                    //File directory = new File(DIRECTORY);
                     // Get the file name and save the uploaded file to the directory
                     String fileName = file.getOriginalFilename();
 
                     Path filePath = Paths.get(DIRECTORY, fileName);
                     Files.write(filePath, file.getBytes());
                     // Update the user's profile picture path in the database
-                    String imagePath = DIRECTORY + File.separator + fileName;
+                    //String imagePath = DIRECTORY + File.separator + fileName;
                     user.setImage("http://localhost:8080/users/userImages/" + fileName);
                     userRepository.save(user);
                     return ResponseEntity.ok().body("Profile picture has set successfully");
@@ -158,6 +156,9 @@ public class UserService {
         if (user != null) {
             // Check if the old password matches the user's current password
             if (encoder.matches(oldPassword, user.getPassword())) {
+                if(oldPassword.equals(newPassword)){
+                    return ResponseEntity.badRequest().body("Old password matches with new password");
+                }
                 // Validate the new password (add your validation logic here)
                 if (isValidPassword(newPassword)) {
                     // Set the new password and save the user entity
@@ -197,14 +198,10 @@ public class UserService {
         }
 
         // Check for presence of symbols
-        if (!Pattern.compile("[^A-Za-z0-9]").matcher(newPassword).find()) {
-            return false;
-        }
-
-        return true;
+        return Pattern.compile("[^A-Za-z0-9]").matcher(newPassword).find();
     }
 
-    public ResponseEntity<String> changeEmailAddress(String username, String newEmailAddress) {
+   /* public ResponseEntity<String> changeEmailAddress(String username, String newEmailAddress) {
         // Retrieve the user from the database
         UserEntity user = userRepository.findByEmail(username);
 
@@ -219,7 +216,7 @@ public class UserService {
         // Save the updated user
         userRepository.save(user);
         return ResponseEntity.ok("Email address changed successfully.");
-    }
+    }*/
 
     @Transactional
     public void deleteAccount(String username) throws Exception {
@@ -243,7 +240,7 @@ public class UserService {
     }
 
     @Transactional
-    public ResponseEntity<String> setAddress(String username, String country, String city, String street, String building, String postalCode) {
+    public ResponseEntity<?> setAddress(String username, String country, String city, String street, String building, String postalCode) {
         UserEntity user = userRepository.findByEmail(username);
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with username:" + username);
@@ -252,6 +249,7 @@ public class UserService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fields cannot be empty");
         }
         AddressEntity address = user.getAddress();
+
         if (address == null) {
             address = new AddressEntity();
         }
@@ -260,11 +258,18 @@ public class UserService {
         address.setStreet(street);
         address.setBuilding(building);
         address.setPostalCode(postalCode);
+        AddressDto addressDto = new AddressDto();
+        addressDto.setCountry(address.getCountry());
+        addressDto.setCity(address.getCity());
+        addressDto.setStreet(address.getStreet());
+        addressDto.setBuilding(address.getBuilding());
+        addressDto.setPostalCode(address.getPostalCode());
         addressRepository.save(address);
         user.setAddress(address);
         userRepository.save(user);
 
-        return ResponseEntity.ok().body("Address has changed successfully");
+
+        return ResponseEntity.ok().body(addressDto);
     }
 
     @Transactional
@@ -278,7 +283,7 @@ public class UserService {
             logger.info("Phone number cannot be empty");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number cannot be empty");
         }
-        System.out.println(phoneNumber);
+
         phoneNumber = phoneNumber.substring(1, 13);
 
         if (!phoneNumber.startsWith("+374") || phoneNumber.length() != 12 || !phoneNumber.substring(1).matches("\\d+")) {

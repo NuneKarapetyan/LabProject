@@ -5,6 +5,7 @@ import com.example.epamProject.entity.BasketItemStatus;
 import com.example.epamProject.repo.BasketRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,14 +23,14 @@ public class AdminReceiptService {
     }
 
 
-    public boolean validateReceipt(String medicineName, String username, boolean isValid) {
+    public ResponseEntity<String> validateReceipt(String medicineName, String username, boolean isValid) {
 
         // Find the basket item by medicine name and username
         BasketItemEntity basketItem = basketRepository.findByUserEmailAndMedicineName(username, medicineName);
 
         if (basketItem == null) {
             // Basket item not found
-            return false;
+            return ResponseEntity.badRequest().body("no basket item found");
         }
         if (isValid) {
             // Update the receipt validation status
@@ -48,7 +49,7 @@ public class AdminReceiptService {
         // Save the updated basket item
         basketRepository.save(basketItem);
 
-        return true; // Validation successful
+        return ResponseEntity.ok("Receipt validation status updated successfully.");
 
     }
 }

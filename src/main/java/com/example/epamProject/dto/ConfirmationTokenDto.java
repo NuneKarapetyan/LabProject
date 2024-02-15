@@ -13,7 +13,6 @@ import java.util.Date;
 @Setter
 public class ConfirmationTokenDto {
 
-
     private String confirmationToken;
     private Date createdDate;
     private UserDto user;

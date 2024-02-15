@@ -15,8 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-//@EnableWebSecurity
-public class SecurityConfig  {
+
+public class SecurityConfig {
 
     @Autowired
     private AuthenticationEntryPoint authEntryPoint;
@@ -27,21 +27,10 @@ public class SecurityConfig  {
     }
 
     @Bean
-    public PasswordEncoder encoder(){
+    public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-       http.authorizeHttpRequests(authorize -> authorize
-               .dispatcherTypeMatchers(DispatcherType.ERROR, DispatcherType.FORWARD).permitAll()
-               .requestMatchers(
-                       "/authenticate","/confirm-account/**","/success","/failed",
-                       "/swagger-ui/**","/v3/api-docs/**"
-               ).permitAll()
-               .anyRequest().authenticated()).csrf(AbstractHttpConfigurer::disable);
-        return http.build();
-    }*/
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -51,10 +40,10 @@ public class SecurityConfig  {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers( "/authenticate","/confirm-account/**","/success","/failed",
-                        "/swagger-ui/**","/v3/api-docs/**","/api/admin/receipts/**"
-                        ,"/register","/users/userImages/**","/users/import-csv","/medicines/import-csv",
-                        "/doctors/import-csv","addresses/import-csv")
+                .requestMatchers("/authenticate", "/confirm-account/**", "/success", "/failed",
+                        "/swagger-ui/**", "/v3/api-docs/**", "/api/admin/receipts/**"
+                        , "/register", "/users/userImages/**", "/users/import-csv", "/medicines/import-csv",
+                        "/doctors/import-csv", "addresses/import-csv","users/userImage/**")
                 .permitAll().anyRequest()
                 .authenticated()
                 .and()
@@ -70,16 +59,6 @@ public class SecurityConfig  {
         return http.build();
     }
 
-
-    /*.and()
-                           .sessionManagement()
-                           .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                           .and()
-                           .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-               } catch (Exception e) {
-                   e.printStackTrace();
-               }
-           }*/
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration) throws Exception {

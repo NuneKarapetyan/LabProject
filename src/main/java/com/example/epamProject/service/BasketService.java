@@ -51,13 +51,12 @@ public class BasketService {
 
         // Find the medicine by name
         MedicineEntity medicine = medicineRepository.findByName(medicineName);
-        System.out.println(medicine);
         if (medicine == null) {
             // Medicine not found
             logger.warn("medicine does not found:" + medicineName);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(medicineName + " not found");
         }
-
+        System.out.println(hasDoctorReceipt);
         // Check if the medicine requires a doctor receipt
         if (medicine.isRequiresDoctorReceipt() && !hasDoctorReceipt) {
             // Medicine requires doctor receipt but user didn't provide one
@@ -115,7 +114,7 @@ public class BasketService {
             if (medicine == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Medicine not found with name: " + medicineName);
             }
-            if (doctorReceipt.isEmpty() || doctorReceipt == null) {
+            if ( doctorReceipt == null || doctorReceipt.isEmpty() ) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Doctors Receipt is missing");
 
             }
@@ -150,12 +149,12 @@ public class BasketService {
         }
     }
 
-    public String getReceiptFilePath(String medicineName) {
+    public ResponseEntity<String> getReceiptFilePath(String medicineName) {
         BasketItemEntity basketItem = basketRepository.findByMedicineName(medicineName);
         if (basketItem == null || basketItem.getPath() == null || basketItem.getPath().isEmpty()) {
-            return null;
+          return   ResponseEntity.badRequest().build();
         }
-        return basketItem.getPath();
+        return ResponseEntity.ok().body(basketItem.getPath());
     }
 
     public BasketDto getUserBasket(String username) {
@@ -218,12 +217,15 @@ public class BasketService {
             if (!item.getStatus().equals(BasketItemStatus.APPROVED)) {
                 return false; // Cannot buy if any item is not approved
             }
+            MedicineEntity medicineEntity = medicineRepository.findByName(item.getMedicineName());
+            medicineEntity.setAvailableQuantity(medicineEntity.getAvailableQuantity()-item.getQuantity());
         }
 
         // Process payment (Assuming successful payment)
         // Deduct total cost from user's account balance or initiate payment gateway transaction
 
         // Update basket status to BOUGHT or remove items from basket
+
         return updateBasketStatus(username,BasketItemStatus.BOUGHT);
     }
     public boolean updateBasketStatus(String username, BasketItemStatus status) {
@@ -239,7 +241,6 @@ public class BasketService {
         for (BasketItemEntity basketItem : basketItems) {
             basketItem.setStatus(status);
         }
-
         // Save the updated basket items back to the database
         basketRepository.saveAll(basketItems);
 

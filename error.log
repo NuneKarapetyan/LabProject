@@ -1,2 +1,12 @@
-12:57:28.869 [main] INFO  c.e.e.service.RegistrationService - Registering user with email: john@example.com
-12:57:28.869 [main] WARN  c.e.e.service.RegistrationService - Password does not meet strength requirements for user with email: john@example.com
+13:17:06.087 [main] INFO  c.e.e.service.RegistrationService - Registering user with email: john@example.com
+13:17:06.087 [main] WARN  c.e.e.service.RegistrationService - Password must contain at least one uppercase letter.
+13:17:06.119 [main] WARN  c.e.e.service.RegistrationService - Email john@example.com is already in use
+13:17:16.733 [main] INFO  c.e.e.service.RegistrationService - Registering user with email: john@example.com
+13:17:16.733 [main] WARN  c.e.e.service.RegistrationService - Password must contain at least one uppercase letter.
+13:17:58.602 [main] INFO  c.e.e.service.RegistrationService - Registering user with email: john@example.com
+13:17:58.602 [main] INFO  c.e.e.service.RegistrationService - Password is strong!
+13:17:58.633 [main] INFO  c.e.e.service.RegistrationService - Confirmation Token: e5ece672-3ee1-4cf2-8ae6-74bff184356a
+13:18:08.627 [main] INFO  c.e.e.service.RegistrationService - Registering user with email: john@example.com
+13:18:08.642 [main] WARN  c.e.e.service.RegistrationService - Password must contain at least one uppercase letter.
+13:19:07.203 [main] INFO  c.e.e.service.RegistrationService - Registering user with email: john@example.com
+13:19:07.219 [main] WARN  c.e.e.service.RegistrationService - Password must contain at least one uppercase letter.

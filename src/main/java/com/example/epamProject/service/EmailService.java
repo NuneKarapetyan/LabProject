@@ -23,11 +23,12 @@ public class EmailService {
         javaMailSender.send(email);
     }
 
-    public void sendEmailToDoctor(Long doctorId, String subject, String message) {
+    public void sendEmailToDoctor(String doctorEmail, String subject, String message) {
         // Retrieve doctor's email address based on doctorId
-        String doctorEmail = doctorService.getDoctorEmailById(doctorId);
-        String email = (String) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
+        //String doctorEmail = doctorService.getDoctorEmailById(doctorId);
+        String email = SecurityContextHolder.getContext().getAuthentication()
+                .getName();
+        System.out.println(email);
         // Create MimeMessage
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
@@ -36,7 +37,7 @@ public class EmailService {
             // Set sender, recipient, subject, and text of the email
             helper.setFrom(email);
             helper.setTo(doctorEmail);
-            helper.setSubject(subject);
+            helper.setSubject(subject+" from " + email);
             helper.setText(message);
 
             // Send the email

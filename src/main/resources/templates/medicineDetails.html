@@ -102,9 +102,9 @@
                         <span class="text-primary" id="myDos"></span>
                     </div>
                     <ul class="list-unstyled mb-4">
-                        <li class="mb-3"><a href="#!"><i class="far fa-envelope display-25 me-3 text-secondary"></i>dakota@gmail.com</a></li>
-                        <li class="mb-3"><a href="#!"><i class="fas fa-mobile-alt display-25 me-3 text-secondary"></i>+012 (345) 6789</a></li>
-                        <li><a href="#!"><i class="fas fa-map-marker-alt display-25 me-3 text-secondary"></i>205 Main Street, USA</a></li>
+
+                        <li class="mb-3"><i id="avQuant" ></i></li>
+                        <li><i id="ageRestr"></i></li>
                     </ul>
                     <input type="file" style="display: none" id="fileUpload">
                     <label style="display: none" for="fileUpload" id="fileUploadBtn" class="btn btn-success">Upload file</label>
@@ -160,6 +160,9 @@
                     document.getElementById("mImg").src = data.image
                     document.getElementById("mPrice").innerText = "Price: " + data.price
                     document.getElementById("myDos").innerText = "Dosage: " + data.dosage
+                    document.getElementById("ageRestr").innerText = "Age Restriction: " + data.ageRestriction
+                    document.getElementById("avQuant").innerText = "Available Quantity: " + data.availableQuantity
+
 
                     if(data.doctorsNote)
                     {

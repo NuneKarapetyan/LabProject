@@ -1,4 +1,4 @@
-package com.example.epamProject.controller;
+package com.example.epamProject.requests;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class AddMedicineRequest {
     private String medicineName;
-    private boolean hasDoctorReceipt;
+    private boolean doctorReceipt;
 
 
 }

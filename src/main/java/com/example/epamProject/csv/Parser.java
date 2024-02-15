@@ -2,9 +2,7 @@ package com.example.epamProject.csv;
 
 import com.example.epamProject.entity.*;
 import com.example.epamProject.repo.AddressRepository;
-import com.example.epamProject.repo.DoctorRepository;
 import com.example.epamProject.repo.RoleRepository;
-import com.example.epamProject.repo.UserRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -25,54 +23,11 @@ import java.util.List;
 @Component
 public class Parser {
 
-    /* public List<UserEntity> csvToUserEntity(InputStream is) {
-         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
-              CSVParser csvParser = new org.apache.commons.csv.CSVParser(fileReader,
-                      CSVFormat.EXCEL.withDelimiter(',')
-                              .withSkipHeaderRecord(true)
-                              .withTrim()
-                              .withIgnoreEmptyLines(true)
-                              .withQuote('"')
-                              .withIgnoreHeaderCase()
-                              .withHeader(
-                                      "first_name", "last_name", "phone_number", "email", "password",
-                                      "address_name", "city", "country", "postal_code", "image", "age", "id"))) {
-
-             List<UserEntity> listOfUsers = new ArrayList<>();
-             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-
-             for (CSVRecord csvRecord : csvRecords) {
-                 if (Integer.parseInt(csvRecord.get("age")) > 0) {
-                     Long addressId = Long.parseLong(csvRecord.get("addressID"));
-                     AddressEntity address = addressRepository.findById(addressId)
-                             .orElseThrow(() -> new RuntimeException("Address not found for ID: " + addressId));
-                     UserEntity user = new UserEntity();
-                     user.setFirstName(csvRecord.get("first_name"));
-                     user.setLastName(csvRecord.get("last_name"));
-                     user.setPhoneNumber(csvRecord.get("phone_number"));
-                     user.setEmail(csvRecord.get("email"));
-                     user.setPassword(csvRecord.get("password"));
-                     user.setAddress(Long.valueOf(csvRecord.get("addressId")));
-                     user.setImage(csvRecord.get("image"));
-                     user.setAge(Integer.parseInt(csvRecord.get("age")));
-                     user.setId(Long.parseLong(csvRecord.get("id")));
-
-                     listOfUsers.add(user);
-                 }
-             }
-             return listOfUsers;
-         } catch (IOException e) {
-             throw new RuntimeException("Failed to parse CSV file: " + e.getMessage());
-         }
-     }*/
     @Autowired
     private AddressRepository addressRepository;
-    @Autowired
-    private UserRepository userRepository;
+
     @Autowired
     private RoleRepository roleRepository;
-    @Autowired
-    private DoctorRepository doctorRepository;
 
 
     public List<AddressEntity> csvToAddressEntity(InputStream is) {
@@ -84,7 +39,7 @@ public class Parser {
                              .withIgnoreEmptyLines(true)
                              .withQuote('"')
                              .withIgnoreHeaderCase()
-                             .withHeader("id",  "country", "city","street", "building","postal_code"))) {
+                             .withHeader("id", "country", "city", "street", "building", "postal_code"))) {
 
             List<AddressEntity> listOfAddresses = new ArrayList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
@@ -107,6 +62,7 @@ public class Parser {
             throw new RuntimeException("Failed to parse CSV file for addresses: " + e.getMessage());
         }
     }
+
     public List<DoctorEntity> csvToDoctorEntity(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
              CSVParser csvParser = new org.apache.commons.csv.CSVParser(fileReader,
@@ -116,8 +72,8 @@ public class Parser {
                              .withIgnoreEmptyLines(true)
                              .withQuote('"')
                              .withIgnoreHeaderCase()
-                             .withHeader("id", "specialization","description","email","first_name",
-                                     "last_name","image","rate","phone_number"))) {
+                             .withHeader("id", "specialization", "description", "email", "first_name",
+                                     "last_name", "image", "rate", "phone_number"))) {
 
             List<DoctorEntity> listOfDoctors = new ArrayList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
@@ -152,8 +108,8 @@ public class Parser {
                              .withQuote('"')
                              .withIgnoreHeaderCase()
                              .withHeader(
-                                     "id", "first_name", "last_name", "email", "phone_number","addressID",
-                                     "image", "password","role_id","age"))) {
+                                     "id", "first_name", "last_name", "email", "phone_number", "addressID",
+                                     "image", "password", "role_id", "age"))) {
 
             List<UserEntity> listOfUsers = new ArrayList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
@@ -167,7 +123,7 @@ public class Parser {
 
                     Integer roleId = Integer.valueOf(csvRecord.get("role_id"));
                     RoleEntity role = roleRepository.findById(Long.valueOf(roleId))
-                            .orElseThrow( ()-> new RuntimeException("Role not found for ID: " + roleId));
+                            .orElseThrow(() -> new RuntimeException("Role not found for ID: " + roleId));
                     // Create UserEntity
                     UserEntity user = new UserEntity();
                     user.setFirstName(csvRecord.get("first_name"));
@@ -199,8 +155,8 @@ public class Parser {
                              .withIgnoreEmptyLines(true)
                              .withQuote('"')
                              .withIgnoreHeaderCase()
-                             .withHeader("id","age_restriction",  "available_quantity", "doctors_note","dosage",
-                                     "expiration_date", "name", "price",  "rate","image","description"))) {
+                             .withHeader("id", "age_restriction", "available_quantity", "doctors_note", "dosage",
+                                     "expiration_date", "name", "price", "rate", "image", "description"))) {
 
             List<MedicineEntity> listOfMedicines = new ArrayList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
@@ -210,7 +166,7 @@ public class Parser {
                 MedicineEntity medicine = new MedicineEntity();
                 medicine.setId(Integer.parseInt(csvRecord.get("id")));
                 medicine.setName(csvRecord.get("name"));
-                medicine.setDosage(csvRecord.get("dosage")+"mg");
+                medicine.setDosage(csvRecord.get("dosage") + "mg");
                 medicine.setPrice(Double.parseDouble(csvRecord.get("price")));
                 medicine.setAvailableQuantity(Integer.parseInt(csvRecord.get("available_quantity")));
                 try {

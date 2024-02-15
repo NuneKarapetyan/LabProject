@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class RoleDto {
+
     private String role;
 
 }

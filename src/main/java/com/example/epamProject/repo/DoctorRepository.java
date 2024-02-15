@@ -13,22 +13,11 @@ import java.util.Optional;
 @Repository
 public interface DoctorRepository extends JpaRepository<DoctorEntity, Integer> {
 
-
     List<DoctorEntity> findAll();
 
     Page<DoctorEntity> findAll(Pageable pageable);
 
-    List<DoctorEntity> findBySpecialization(String specialization);
-
-    List<DoctorEntity> findByFirstName(String firstName);
-
     Optional<DoctorEntity> findById(Long id);
-
-    List<DoctorEntity> findByLastName(String lastName);
-
-    List<DoctorEntity> findByFirstNameAndLastName(String firstName, String lastName);
-    String getDoctorEmailById(Long id);
-    void deleteById(Long id);
 
     @Query("select d from DoctorEntity d where d.firstName like %?1 or d.lastName like %?1 or d.specialization like %?1")
     List<DoctorEntity> findByFirstNameOrLastNameOrSpecialization(String query);

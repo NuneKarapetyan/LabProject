@@ -12,19 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BasketDto {
+
     private String username;
     private List<ItemDto> items;
 
 
- /*   public static BasketDto getUserBasket(UserEntity user, List<BasketItemEntity> basketItems) {
-        BasketDto basketDto = new BasketDto();
-        basketDto.setId((long) user.getId());
-        basketDto.setUsername(user.getEmail());
-
-        List<BasketItemDto> basketItemDtos = BasketItemDto.fromEntityList(basketItems);
-        basketDto.setItems(basketItemDtos);
-
-        return basketDto;
-    }*/
 
 }

@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BasketItemDto {
+
     private String medicineName;
     private int quantity;
     private double price;

@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
+
+
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
@@ -304,13 +306,16 @@
                 // console.log(document.getElementById('firstName'))
                 let fullName = data.firstName + ' ' + data.lastName;
 
+
                 document.getElementById('fullName').innerText = fullName;
                 document.getElementById('email').innerText = data.email;
                 document.getElementById('firstName').innerText = data.firstName;
                 document.getElementById('lastName').innerText = data.lastName;
-                document.getElementById('phoneNumber').innerText = data.phoneNumber ? data.phoneNumber : 'not set';
-                document.getElementById('address').innerText = data.address === "null" ? "not set" : data.address;
+
                 document.getElementById('profilePic').src = data.photo;
+                document.getElementById('phoneNumber').innerText = data.phoneNumber ? data.phoneNumber : 'not set';
+                document.getElementById('address').innerText = data.address === "null" ? "not set":addressData;
+
             })
             .catch(error => {
                 console.error('Error fetching user profile:', error);
@@ -472,11 +477,14 @@
     }
 
     function changeAddress() {
+
         let country = document.getElementById('country').value;
         let city = document.getElementById('city').value;
         let street = document.getElementById('street').value;
         let building = document.getElementById('building').value;
         let postalCode = document.getElementById('postalCode').value;
+
+        // console.log(country)
         const token = localStorage.getItem("jwtToken");
 
         let addressData = { country, city, street, building, postalCode };
@@ -506,12 +514,14 @@
                 // Optionally, provide feedback to the user that an error occurred
               //  alert('Failed to change address. Please try again later.');
             });
+
     }
 
     // Load user profile when the page loads
     window.onload = function() {
         getUserProfile();
     };
+
 </script>
 </body>
 </html>

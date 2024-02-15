@@ -5,6 +5,8 @@ import com.example.epamProject.csv.ResponseMessage;
 import com.example.epamProject.dto.AddressDto;
 import com.example.epamProject.service.StorageService;
 import com.example.epamProject.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -54,6 +56,8 @@ public class UserController {
 
     @GetMapping("/getProfile")
     @CrossOrigin("http://localhost:63342/")
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+
     public ResponseEntity<?> getUserProfileByUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -67,6 +71,8 @@ public class UserController {
 
     @PatchMapping("/uploadPhoto")
     @CrossOrigin("http://localhost:63342/")
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+
     public ResponseEntity<?> uploadProfilePicture(
             @RequestBody MultipartFile file) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -77,6 +83,8 @@ public class UserController {
     }
 
     @GetMapping("/userImages/{fileName:.+}")
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+
     public ResponseEntity<Resource> serveFile(@PathVariable String fileName) {
         Resource file = storageService.loadAsResource(fileName);
         // Determine the media type based on the file extension
@@ -98,6 +106,8 @@ public class UserController {
 
     @PostMapping("/changePassword")
     @CrossOrigin("http://localhost:63342/")
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -109,7 +119,7 @@ public class UserController {
         }
     }
 
-    @PatchMapping("/changeEmail")
+   /* @PatchMapping("/changeEmail")
     @CrossOrigin("http://localhost:63342/")
     public ResponseEntity<?> changeEmailAddress(@RequestBody String changeEmailRequest) {
         // Get the username from the JWT token
@@ -117,10 +127,12 @@ public class UserController {
         String username = authentication.getName();
 
         return userService.changeEmailAddress(username, changeEmailRequest);
-    }
+    }*/
 
     @DeleteMapping("/deleteAccount")
     @CrossOrigin("http://localhost:63342/")
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+
     public ResponseEntity<?> deleteAccount() {
         // Get the username from the JWT token
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -137,16 +149,20 @@ public class UserController {
 
     @PatchMapping("/setAddress")
     @CrossOrigin("http://localhost:63342/")
-    public ResponseEntity<String> setAddress(@RequestBody AddressDto addressDTO) {
+    @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+
+    public ResponseEntity<?> setAddress(@RequestBody AddressDto addressDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        userService.setAddress(username, addressDTO.getCountry(), addressDTO.getCity(),
+       return userService.setAddress(username, addressDTO.getCountry(), addressDTO.getCity(),
                 addressDTO.getStreet(), addressDTO.getBuilding(), addressDTO.getPostalCode());
-        return ResponseEntity.ok("Address updated successfully.");
+
     }
 
         @PostMapping("/setPhoneNumber")
         @CrossOrigin("http://localhost:63342/")
+        @Operation(security = @SecurityRequirement(name = "bearerAuth"))
+
         public ResponseEntity<?> setPhoneNumber(@RequestBody String phoneNumber) {
             // Get the username from the JWT token
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

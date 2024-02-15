@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Setter
 public class MedicineDTO {
 
-
     private String name;
     private String dosage;
     private double price;
