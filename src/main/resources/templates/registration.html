@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -216,14 +217,6 @@
             font-weight: 500;
             cursor: pointer;
         }
-        .error-message {
-            color: red;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-        .error-field {
-            border: 1px solid red;
-        }
     </style>
 
 </head>
@@ -234,7 +227,7 @@
         <div class="slide-controls">
             <input type="radio" name="slide" id="login" checked>
             <input type="radio" name="slide" id="signup">
-            <label for="login" class="slide login" >Sign In</label>
+            <label for="login" class="slide login">Sign In</label>
             <label for="signup" class="slide signup">Sign Up</label>
             <div class="slider-tab"></div>
         </div>
@@ -303,12 +296,12 @@
     const signupLink = document.querySelector("form .signup-link a");
     signupBtn.onclick = (() => {
         loginForm.style.marginLeft = "-50%";
-        // loginText.style.marginLeft = "-50%";
+        loginText.style.marginLeft = "-50%";
         window.location.hash = "signup";
     });
     loginBtn.onclick = (() => {
         loginForm.style.marginLeft = "0%";
-        // loginText.style.marginLeft = "0%";
+        loginText.style.marginLeft = "0%";
         window.location.hash = "login";
     });
     signupLink.onclick = (() => {
@@ -324,7 +317,7 @@
             loginBtn.click();
         }
     });
-    function checkPasswords() {
+    function checkPassword() {
         let password = document.getElementById("password").value;
         let confirmPassword = document.getElementById("confirmPassword").value;
 
@@ -344,11 +337,11 @@
         return true;
     }
 
-    document.getElementById('signupForm').addEventListener('submit', function (event) {
-        if (!checkPasswords()) {
-            event.preventDefault();
-        }
-    });
+    // document.getElementById('signupForm').addEventListener('submit', function (event) {
+    //     if (!checkPassword()) {
+    //         event.preventDefault();
+    //     }
+    // });
 
     const queryString = window.location.search;
     if (queryString.includes("loginError") && queryString.includes("bad-credentials")) {
@@ -368,15 +361,15 @@
     console.log(queryString);
 
 
-    //  function checkPassword(){
-    //      let password=document.getElementById("password").value;
-    //      let camelCaseRegExp = /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*-]).{12,}/;
-    //      if(camelCaseRegExp.test(password)){
-    //          console.log("SUCCESS");
-    //          return;
-    //      }
-    //      console.log("INVALID");
-    //      return;
+    // function checkPassword(){
+    //     let password=document.getElementById("password").value;
+    //     let camelCaseRegExp = /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*-]).{12,}/;
+    //     if(camelCaseRegExp.test(password)){
+    //         console.log("SUCCESS");
+    //         return;
+    //     }
+    //     console.log("INVALID");
+    //     return;
     // }
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -384,6 +377,7 @@
         document.getElementById('loginForm').addEventListener('click', function (event) {
             document.getElementById('loginErrorMsg').style = "hidden"
             event.preventDefault(); // Prevent the form from submitting normally
+
             // Get the username and password from the form
             const username = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
@@ -432,9 +426,12 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         //Add event listener to the login form
-        document.getElementById('signupForm').addEventListener('click', function (event) {
-            // document.getElementById('loginErrorMsg').style = "hidden"
-            event.preventDefault(); // Prevent the form from submitting normally
+        // document.getElementById('loginErrorMsg').style = "hidden"
+
+        document.getElementById('signupForm').addEventListener('click', function (event) {if (!checkPassword()) {
+            event.preventDefault();
+        }
+
             // Get the username and password from the form
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
@@ -477,4 +474,3 @@
 </body>
 
 </html>
-

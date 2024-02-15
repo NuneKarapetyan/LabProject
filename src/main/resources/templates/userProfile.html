@@ -10,16 +10,19 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            background-color: #c2f382;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
+
         }
         h1 {
             text-align: center;
         }
         .profile-info {
             margin-bottom: 20px;
+
         }
         .profile-info label {
             font-weight: bold;
@@ -46,7 +49,7 @@
         }
         .form-group button {
             padding: 8px 12px;
-            background-color: #007bff;
+            background-color: #06a94d;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -109,10 +112,10 @@
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: #def8cd;">
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="profilePic" alt="Admin" class="rounded-circle" width="150">
-                            <label for="fileInputBtn" class="btn btn-primary">Change photo</label>
+                            <label for="fileInputBtn" style="background-color:#06a94d;" class="btn btn-primary">Change photo</label>
                             <input type="file" accept="image/png, image/gif, image/jpeg" style="display: none" id="fileInputBtn"/>
                             <div class="mt-3">
                                 <h4 id="fullName"></h4>
@@ -150,7 +153,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card mb-3">
-                    <div class="card-body">
+                    <div class="card-body"  style="background-color: #def8cd;">
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Full Name</h6>
@@ -176,6 +179,10 @@
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <span id="phoneNumber"></span>
+                                <div class="mt-2">
+                                    <input type="text" class="form-control" id="newPhoneNumber" placeholder="Enter new phone number">
+                                    <button  style="background-color:#06a94d;" class="btn btn-primary mt-2" onclick="changePhoneNumber()">Change Phone Number</button>
+                                </div>
                             </div>
                         </div>
                         <hr>
@@ -186,12 +193,18 @@
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <span id="address"></span>
+                                <input type="text" class="form-control" id="country" placeholder="Country">
+                                <input type="text" class="form-control mt-2" id="city" placeholder="City">
+                                <input type="text" class="form-control mt-2" id="street" placeholder="Street">
+                                <input type="text" class="form-control mt-2" id="building" placeholder="Building">
+                                <input type="text" class="form-control mt-2" id="postalCode" placeholder="Postal Code">
+                                <button  style="background-color:#06a94d;"class="btn btn-primary mt-2" onclick="changeAddress()">Change Address</button>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="btn btn-info " data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change password</div>
+                                <div  style="background-color:#06a94d; color: white" class="btn btn-info " data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change password</div>
                             </div>
                         </div>
                     </div>
@@ -426,6 +439,73 @@
         }
 
         // Make API call to delete account
+    }
+    function changePhoneNumber() {
+        let newPhoneNumber = document.getElementById('newPhoneNumber').value;
+        const token = localStorage.getItem("jwtToken");
+
+        fetch('http://localhost:8080/users/setPhoneNumber', {
+            method: 'POST',
+            body: JSON.stringify(newPhoneNumber),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to change phone number');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update UI to reflect the changed phone number
+                document.getElementById('phoneNumber').innerText = data.phoneNumber;
+                // Optionally, provide feedback to the user that the phone number has been updated
+                alert('Phone number updated successfully');
+            })
+            .catch(error => {
+                console.error('Error changing phone number:', error);
+                // Optionally, provide feedback to the user that an error occurred
+              //  alert('Failed to change phone number. Please try again later.');
+            });
+    }
+
+    function changeAddress() {
+        let country = document.getElementById('country').value;
+        let city = document.getElementById('city').value;
+        let street = document.getElementById('street').value;
+        let building = document.getElementById('building').value;
+        let postalCode = document.getElementById('postalCode').value;
+        const token = localStorage.getItem("jwtToken");
+
+        let addressData = { country, city, street, building, postalCode };
+
+        fetch('http://localhost:8080/users/setAddress', {
+            method: 'PATCH',
+            body: JSON.stringify(addressData),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to change address');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update UI to reflect the changed address
+                document.getElementById('address').innerText = data.address;
+                // Optionally, provide feedback to the user that the address has been updated
+                alert('Address updated successfully');
+            })
+            .catch(error => {
+                console.error('Error changing address:', error);
+                // Optionally, provide feedback to the user that an error occurred
+              //  alert('Failed to change address. Please try again later.');
+            });
     }
 
     // Load user profile when the page loads

@@ -2,11 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content=
-            "width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:ital,wght@0,400;1,500&family=Sansita+Swashed&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <title>EPAM Pharmacy</title>
     <style>
         * {
@@ -336,6 +347,69 @@
         footer .footer span a:hover {
             text-decoration: underline;
         }
+        #root{
+            width: 100dvw;
+        }
+        .container{
+            font-weight: 600;
+            display: flex;
+            flex-flow: column;
+            padding: 20px;
+            background-color: #a5d525;
+            color: white;
+            font-size: 120%;
+            justify-content: space-around;
+        }
+        .top{
+            display: flex;
+            justify-content: space-between;
+
+        }
+        .top_item{
+            align-items: center;
+            margin: 0px;
+            display: flex;
+            justify-content: center;
+        }
+        .bottom{
+            padding: 10px;
+            margin: 0 auto;
+            font-size: 80%;
+            margin-top: 10px;
+        }
+        .socialMedia{
+            display: flex;
+            padding: 10px;
+            height: 30px;
+            font-size: 75%;
+            align-items: center;
+        }
+        .social{
+            margin:0px 3px;
+            padding:2px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            border: white solid 2px;
+            height:30px;
+            background: white;
+        }
+        .fab{
+            color: white;
+            font-size: 140%;
+        }
+        .fa-facebook{
+            color:blue;
+        }
+        .fa-linkedin{
+            color:darkblue;
+        }
+        .fa-instagram{
+            color:purple;
+        }
+        .fa-youtube{
+            color:red;
+        }
 
         @media screen and (max-width: 1060px) {
             .contactMenu {
@@ -400,7 +474,7 @@
         <ul>
             <li><a href="#Home">Home</a></li>
             <li><a href="#My Projects">About</a></li>
-            <li><a href="registration.html#signup" onclick="signIn()" target="_blank">Sign Up</a></li>
+            <li><a href="registration.html#signup" target="_blank">Sign Up</a></li>
             <li><a href="registration.html#login" target="_blank">Sign In</a></li>
         </ul>
     </div>
@@ -540,39 +614,33 @@
 </section>
 <!-- Footer section -->
 <footer>
-        <div class="footer_footer__tR7mX">
-            <div class="footer_footer_content__4vpSw">
-                <div style="letter-spacing: 2px; margin-top: 15px;"><h6>
-                    <div class="social_payxInfo__aWxc0"><p>EPAM Pharmacy</p>
-                        <hr class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1d7q5f8" color="white" style="width: 0.3%;">
-                        <p>Tel.: (+374)77 932 982</p>
-                        <hr class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1d7q5f8" color="white" style="width: 0.3%;">
-                        <p style="padding: 0px;">E-mail: info@epampharmacy.am</p><hr class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1d7q5f8" color="white" style="width: 0.3%;">
-                        <p> 15 Movses Khorenaci st., Yerevan, Armenia, 0010</p><hr class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1d7q5f8" color="white" style="width: 0.3%;">
-                        <div class="social_socialContainer__W2ZgT" style="width: 170px;">
-                            <a href="https://www.facebook.com/payx.am/" target="_blank" rel="noreferrer" style="text-decoration: none;">
-                                <div class="social_socialMedia__n+NBS" style="background: rgb(59, 89, 152); width: 37.7778px; height: 37.7778px;">
-                                    <i class="fab fa-facebook " style="color: white;"></i>
-                                </div>
-                            </a><a href="https://www.linkedin.com/company/payx-payment-express/" target="_blank" rel="noreferrer" style="text-decoration: none;">
-                            <div class="social_socialMedia__n+NBS" style="background: rgb(0, 119, 181); width: 37.7778px; height: 37.7778px;">
-                                <i class="fab fa-linkedin " style="color: white;"></i>
-                            </div>
-                        </a><a href="https://www.instagram.com/payxmobile/" target="_blank" rel="noreferrer" style="text-decoration: none;">
-                            <div class="social_socialMedia__n+NBS" style="background: darkviolet; width: 37.7778px; height: 37.7778px;">
-                                <i class="fab fa-instagram " style="color: white;"></i>
-                            </div>
-                        </a><a href="https://www.youtube.com/channel/UCKMJNfgHvLIsU4NrbZ1l1Ow" target="_blank" rel="noreferrer" style="text-decoration: none;">
-                            <div class="social_socialMedia__n+NBS" style="background: red; width: 37.7778px; height: 37.7778px;">
-                                <i class="fab fa-youtube " style="color: white;"></i>
-                            </div>
-                        </a>
+    <div id="root">
+        <div class="container">
+            <div class="top">
+                <div class="top_item">Epam</div>
+                <div class="top_item">PHONE:+1-267-759-9000</div>
+                <div class="top_item">41 University Drive • Suite 202,
+                    Newtown, PA 18940 • USA</div>
+                <!--                <div class="top_item">E-mail:storex@mail.ru</div>-->
+                <div class="top_item">
+                    <div class="socialMedia">
+                        <div class="social">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <div class="social">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="social">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="social">
+                            <i class="fab fa-youtube"></i>
                         </div>
                     </div>
-                </h6>
                 </div>
             </div>
-            <p style="margin: 0px; font-size: 80%;">© 2023, PayX LLC. All Rights Reserved.</p>
+            <div class="bottom">© 2024 EPAM Systems, Inc.
+                All Rights Reserved. EPAM and the EPAM logo are registered trademarks of EPAM Systems, Inc.</div>
         </div>
     </div>
 </footer>

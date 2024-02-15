@@ -34,8 +34,8 @@ public class UserController {
 
 
     @PostMapping("/import-csv")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
-        String message = "";
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestBody MultipartFile file) {
+
         try {
             userService.save(file);
             String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -44,9 +44,9 @@ public class UserController {
                     .toUriString();
 
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(new ResponseMessage(message, fileDownloadUri));
+                    .body(new ResponseMessage("csv data has uploaded", fileDownloadUri));
         } catch (Exception e) {
-            message = e.getMessage() + file.getOriginalFilename() + "!";
+            String message = e.getMessage() + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseMessage(message, ""));
         }
@@ -145,15 +145,15 @@ public class UserController {
         return ResponseEntity.ok("Address updated successfully.");
     }
 
-    @PostMapping("/setPhoneNumber")
-    @CrossOrigin("http://localhost:63342/")
-    public ResponseEntity<?> setPhoneNumber(@RequestBody String phoneNumber) {
-        // Get the username from the JWT token
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
+        @PostMapping("/setPhoneNumber")
+        @CrossOrigin("http://localhost:63342/")
+        public ResponseEntity<?> setPhoneNumber(@RequestBody String phoneNumber) {
+            // Get the username from the JWT token
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
 
-        return userService.setPhoneNumber(username, phoneNumber);
+            return userService.setPhoneNumber(username, phoneNumber);
 
-    }
+        }
 
 }

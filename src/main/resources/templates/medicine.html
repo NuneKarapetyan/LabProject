@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicines Page</title>
@@ -32,7 +33,7 @@
         .medicineItem{
             width: 100%;
             height: 35px;
-            background-color: #999999;
+            background-color: #a1e572;
             display: flex;
             align-items: center;
         }
@@ -161,63 +162,112 @@
     <!-- Medicine names will be displayed here -->
 </div>
 
+<nav aria-label="Page navigation example">
+    <ul class="pagination" >
+        <li id="previous" class="page-item"><a class="page-link">Previous</a></li>
+        <li id="page" style="display: flex;justify-content: center;align-items: center" class="page-item">Page 1</li>
+        <li id="next" class="page-item"><a class="page-link" >Next</a></li>
+    </ul>
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossOrigin="anonymous"></script>
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        // Function to fetch and display medicines based on the selected letter
-            function fetchAndDisplayMedicines(letter) {
-                // Retrieve the JWT token from wherever it's stored (e.g., localStorage)
-                const token = localStorage.getItem('jwtToken');
 
-                // Make sure the token is not null or undefined
-                if (!token) {
-                    console.error('JWT token is missing');
-                    return;
-                }
+    document.addEventListener("DOMContentLoaded", function () {
+        let pageCount;
+        // Function to fetch and display medicines based on the selected letter and pagination parameters
+        function fetchAndDisplayMedicines(letter, page, size, sort) {
+            // Retrieve the JWT token from wherever it's stored (e.g., localStorage)
+            const token = localStorage.getItem('jwtToken');
 
-                // Construct the headers object with the Authorization header containing the JWT token
-                const headers = {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                };
-
-                // Make the fetch request with the headers
-                fetch(`http://localhost:8080/medicines/${letter}`, {
-                    headers: headers
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Failed to fetch medicines');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        // Update the content of the 'medicines-list' element with the fetched medicines
-                        const medicinesList = document.querySelector('.medicines-list');
-                        medicinesList.innerHTML = ''; // Clear previous content
-                        data.forEach(medicine => {
-                            const medicineItem = document.createElement('div');
-                            medicineItem.innerText = medicine;
-                            medicineItem.classList.add("medicineItem")
-                            medicinesList.appendChild(medicineItem);
-                        });
-                    })
-                    .catch(error => console.error('Error fetching medicines:', error));
+            // Make sure the token is not null or undefined
+            if (!token) {
+                console.error('JWT token is missing');
+                return;
             }
 
+            // Construct the headers object with the Authorization header containing the JWT token
+            const headers = {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            };
 
-            // Add event listeners to alphabet letters
+            // Construct the query parameters string
+            const queryParams = `?page=${page}&size=${size}`;
+
+            // Make the fetch request with the headers and query parameters
+            fetch(`http://localhost:8080/medicines/${letter}${queryParams}`, {
+                headers: headers
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401)
+                        {
+                            location.href = 'registration.html'
+                        }                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Update the content of the 'medicines-list' element with the fetched medicines
+                    const medicinesList = document.querySelector('.medicines-list');
+                    pageCount = data.size
+                    medicinesList.innerHTML = ''; // Clear previous content
+                    data.medicineNames.forEach(medicine => {
+                        const medicineItem = document.createElement('div');
+                        medicineItem.innerText = medicine;
+                        medicineItem.classList.add("medicineItem");
+                        medicineItem.addEventListener("click", ()=>{
+                            location.href = `medicineDetails.html?m=${medicine}`
+                        })
+                        medicinesList.appendChild(medicineItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching medicines:', error));
+        }
+
+        // Add event listeners to alphabet letters
         var alphabetLetters = document.querySelectorAll(".alphabet a");
         alphabetLetters.forEach(function (letterLink) {
-        letterLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        var letter = this.textContent; // Get the clicked letter
-        fetchAndDisplayMedicines(letter);
-    });
+            letterLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                var letter = this.textContent; // Get the clicked letter
+                const page = 0; // Default page
+                const size = 10; // Default page size
+                const sort = 'name,asc'; // Default sorting
+                fetchAndDisplayMedicines(letter, page, size);
+            });
+        });
+
+        // By default, fetch and display medicines starting with letter 'A' with default pagination parameters
+        let defaultPage = 0;
+        let defaultSize = 10;
+        //const defaultSort = 'name,asc';
+        fetchAndDisplayMedicines('A', defaultPage, defaultSize);
+
+        let pageCont = document.getElementById("page")
+
+        document.getElementById("previous").addEventListener("click", () => {
+            defaultPage = defaultPage - 1
+            if(defaultPage < 0)
+            {
+                defaultPage = 0
+            }
+            pageCont.innerText = "Page " + (defaultPage + 1)
+            fetchAndDisplayMedicines('A', defaultPage, defaultSize);
+        })
+        document.getElementById("next").addEventListener("click", () => {
+            defaultPage = defaultPage + 1
+            if(defaultPage >= pageCount/defaultSize)
+            {
+                return
+            }
+
+            pageCont.innerText = "Page " + (defaultPage + 1)
+            fetchAndDisplayMedicines('A', defaultPage, defaultSize);
+        })
     });
 
-        // By default, fetch and display medicines starting with letter 'A'
-        fetchAndDisplayMedicines('A');
-    });
 </script>
 
 </body>

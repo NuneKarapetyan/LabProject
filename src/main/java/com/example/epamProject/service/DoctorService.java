@@ -32,6 +32,7 @@ public class DoctorService {
         try {
             System.out.printf(">>>>>>>>>>>>>Starting the CSV import for Doctors %s%n", new Date());
             List<DoctorEntity> doctors = parser.csvToDoctorEntity(file.getInputStream());
+            System.out.println(doctors);
             doctorRepository.saveAll(doctors);
             System.out.printf(">>>>>>>>>>>>>Ending the CSV import for Doctors %s%n", new Date());
         } catch (IOException e) {

@@ -38,6 +38,8 @@ public class MedicineEntity {
 
     @Column(name = "doctors_note")
     private boolean doctorsNote;
+    @Column(columnDefinition = "boolean default false" )
+    private boolean isUploaded;
 
     @Column(name = "rate")
     private double rate;

@@ -13,6 +13,6 @@ import lombok.Setter;
 public class ItemDto {
     private String medicineName;
     private int quantity;
-    private double totalCost;
+    private double price;
     private BasketItemStatus status;
 }

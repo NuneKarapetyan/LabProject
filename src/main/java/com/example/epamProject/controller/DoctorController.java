@@ -28,23 +28,25 @@ public class DoctorController {
     }
 
     @PostMapping("/import-csv")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
-        String message = "";
-        try {
-            doctorService.save(file);
-            String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/api/csv/download/doctors/")
-                    .path(file.getName())
-                    .toUriString();
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestBody MultipartFile file) {
 
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new ResponseMessage(message, fileDownloadUri));
-        } catch (Exception e) {
-            message = e.getMessage() + file.getOriginalFilename() + "!";
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
-                    .body(new ResponseMessage(message, ""));
+            try {
+                doctorService.save(file);
+                String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                        .path("/api/csv/download/doctors/")
+                        .path(file.getName())
+                        .toUriString();
+
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(new ResponseMessage("csv data uploaded", fileDownloadUri));
+            } catch (Exception e) {
+                String  message = e.getMessage() + file.getOriginalFilename() + "!";
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
+                        .body(new ResponseMessage(message, ""));
+            }
         }
-    }
+
+
 
     @CrossOrigin(origins = "http://localhost:63342")
     @GetMapping("/all")

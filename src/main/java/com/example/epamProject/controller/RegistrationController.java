@@ -23,10 +23,10 @@ public class RegistrationController {
     }
 
 
-    //@PostMapping(consumes = "application/json", produces = "application/json", path = "/register")
     @CrossOrigin(origins = "http://localhost:63342")
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody RegistrationDto regDto) {
+
         logger.info("Received registration request for user with email: {}", regDto.getEmail());
         ResponseEntity<String> registrationResult = registrationService.registerUser(regDto);
         logger.info("Registration result: {}", registrationResult.getBody());
@@ -49,8 +49,8 @@ public class RegistrationController {
 
     @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
     public String confirmUserAccount(@RequestParam("token") String confirmationToken) {
-        logger.info("Received confirmation token: {}", confirmationToken);
 
+        logger.info("Received confirmation token: {}", confirmationToken);
         String result = registrationService.confirmEmail(confirmationToken);
         logger.info("Confirmation result: {}", result);
 

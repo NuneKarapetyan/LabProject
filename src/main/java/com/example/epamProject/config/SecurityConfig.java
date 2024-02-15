@@ -52,7 +52,9 @@ public class SecurityConfig  {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers( "/authenticate","/confirm-account/**","/success","/failed",
-                        "/swagger-ui/**","/v3/api-docs/**","/api/admin/receipts/**","/register","/users/userImages/**")
+                        "/swagger-ui/**","/v3/api-docs/**","/api/admin/receipts/**"
+                        ,"/register","/users/userImages/**","/users/import-csv","/medicines/import-csv",
+                        "/doctors/import-csv","addresses/import-csv")
                 .permitAll().anyRequest()
                 .authenticated()
                 .and()

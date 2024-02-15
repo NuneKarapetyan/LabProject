@@ -11,6 +11,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,11 +29,14 @@ public class BasketController {
     @PostMapping("/add")
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<String> addMedicineToBasket(@RequestBody AddMedicineRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
         // Extract data from the request
-        String username = request.getUsername();
-        String medicineName = request.getMedicineName();
-        boolean hasDoctorReceipt = request.isHasDoctorReceipt();
 
+        String medicineName = request.getMedicineName();
+        System.out.println(medicineName);
+        boolean hasDoctorReceipt = request.isHasDoctorReceipt();
+        System.out.println(hasDoctorReceipt);
         // Call the service layer to add the medicine to the basket
         return basketService.addMedicineToBasket(username, medicineName, hasDoctorReceipt);
 
@@ -39,7 +44,8 @@ public class BasketController {
 
     @GetMapping("/{medicineName}/download")
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
-    public ResponseEntity<Resource> downloadReceipt(@PathVariable String medicineName) {
+    public ResponseEntity<Resource> downloadReceipt(@PathVariable String medicineName
+                                                    ) {
         // Retrieve the receipt file path from the service
         String filePath = basketService.getReceiptFilePath(medicineName);
 
@@ -72,15 +78,19 @@ public class BasketController {
     @PostMapping("/receipt/upload")
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> uploadDoctorReceipt(
-            @RequestParam("username") String username,
             @RequestParam("medicineName") String medicineName,
-            @RequestParam("doctorReceipt") MultipartFile doctorReceipt) {
+            @RequestBody MultipartFile doctorReceipt) {
 
-        return basketService.uploadDoctorReceipt(username, medicineName, doctorReceipt);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String username = authentication.getName();
+            return basketService.uploadDoctorReceipt(username, medicineName, doctorReceipt);
+
     }
 
     @GetMapping("/view")
-    public ResponseEntity<BasketDto> getUserBasket(@RequestParam("username") String username) {
+    public ResponseEntity<BasketDto> getUserBasket() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
         BasketDto basket = basketService.getUserBasket(username);
         if (basket != null) {
             return ResponseEntity.ok(basket);
@@ -90,8 +100,10 @@ public class BasketController {
     }
 
     @DeleteMapping("/remove")
-    public ResponseEntity<String> removeMedicineFromBasket(@RequestParam("username") String username,
+    public ResponseEntity<String> removeMedicineFromBasket(
                                                            @RequestParam("medicineName") String medicineName) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
        return basketService.removeMedicineFromBasket(username, medicineName);
 
     }

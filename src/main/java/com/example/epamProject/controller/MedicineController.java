@@ -2,18 +2,20 @@ package com.example.epamProject.controller;
 
 
 import com.example.epamProject.csv.ResponseMessage;
-import com.example.epamProject.dto.MedicineDTO;
 import com.example.epamProject.service.MedicineService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/medicines")
@@ -27,8 +29,8 @@ public class MedicineController {
     }
 
     @PostMapping("/import-csv")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
-        String message = "";
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestBody MultipartFile file) {
+
         try {
             medicineService.save(file);
             String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -37,9 +39,9 @@ public class MedicineController {
                     .toUriString();
 
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(new ResponseMessage(message, fileDownloadUri));
+                    .body(new ResponseMessage("csv data uploaded", fileDownloadUri));
         } catch (Exception e) {
-            message = e.getMessage() + file.getOriginalFilename() + "!";
+          String  message = e.getMessage() + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseMessage(message, ""));
         }
@@ -48,33 +50,59 @@ public class MedicineController {
 
     @GetMapping
     @Operation(summary = "/medicines", security = @SecurityRequirement(name = "bearerAuth"))
-    public ResponseEntity<List<MedicineDTO>> getAllMedicines() {
-        List<MedicineDTO> medicines = medicineService.getAllMedicines();
-        return new ResponseEntity<>(medicines, HttpStatus.OK);
+    @CrossOrigin("http://localhost:63342/")
+    public ResponseEntity<?> getAllMedicines(
+                                             @RequestParam(defaultValue = "0") int page,
+                                             @RequestParam(defaultValue = "10") int size,
+                                             @RequestParam(defaultValue = "name,asc") String[] sort
+                                             )
+    {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return medicineService.getAllMedicines(pageable,username);
+
     }
+
     @GetMapping("/{letter}")
     @Operation(summary = "/medicines/{letter}", security = @SecurityRequirement(name = "bearerAuth"))
     @CrossOrigin("http://localhost:63342/")
-    public List<String> getMedicinesByLetter(@PathVariable char letter) {
+    public ResponseEntity<?> getMedicinesByLetter(@PathVariable char letter,
+                                                  @RequestParam(defaultValue = "0") int page,
+                                                  @RequestParam(defaultValue = "30") int size
+                                                 ) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Pageable pageable = PageRequest.of(page, size);
         // Call the service to fetch medicines based on the selected letter
-        return medicineService.getMedicinesByLetter(String.valueOf(letter));
+        return medicineService.getMedicinesByLetter(pageable,String.valueOf(letter), username);
     }
+
     @GetMapping("name/{medicineName}")
-    @Operation(summary = "/medicines/{medicineName}", security = @SecurityRequirement(name = "bearerAuth"))
-    public ResponseEntity<MedicineDTO> getMedicineDetailsByName(@PathVariable String medicineName) {
-        MedicineDTO medicine = medicineService.getMedicineDetailsByName(medicineName);
-        if (medicine != null) {
-            return ResponseEntity.ok(medicine);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @Operation( security = @SecurityRequirement(name = "bearerAuth"))
+    @CrossOrigin("http://localhost:63342/")
+    public ResponseEntity<?> getMedicineDetailsByName(@PathVariable String medicineName) {
+
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String username = authentication.getName();
+    return medicineService.getMedicineDetailsByName(medicineName, username);
+
+
     }
 
     @GetMapping("/search")
+    @CrossOrigin("http://localhost:63342/")
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
-    public ResponseEntity<List<MedicineDTO>> searchMedicines(@RequestParam("query") String query) {
-        List<MedicineDTO> matchingMedicines = medicineService.searchMedicines(query);
-        return new ResponseEntity<>(matchingMedicines, HttpStatus.OK);
+    public ResponseEntity<?> searchMedicines(@RequestParam("query") String query,
+                                             @RequestParam(defaultValue = "0") int page,
+                                             @RequestParam(defaultValue = "10") int size
+                                             ) {
+        Pageable pageable = PageRequest.of(page, size);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        return medicineService.searchMedicines(query,pageable ,username);
+
     }
 }
 

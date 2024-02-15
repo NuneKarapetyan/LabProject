@@ -24,5 +24,6 @@ public class MedicineDTO {
     private double rate;
     private String image;
     private String description;
+    private boolean isUploaded;
 
 }

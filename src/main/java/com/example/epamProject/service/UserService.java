@@ -7,11 +7,14 @@ import com.example.epamProject.entity.AddressEntity;
 import com.example.epamProject.entity.ConfirmationTokenEntity;
 import com.example.epamProject.entity.UserEntity;
 import com.example.epamProject.exceptions.CSVImportException;
+import com.example.epamProject.repo.AddressRepository;
 import com.example.epamProject.repo.BasketRepository;
 import com.example.epamProject.repo.ConfirmationTokenRepository;
 import com.example.epamProject.repo.UserRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +46,8 @@ public class UserService {
     private final RegistrationService registrationService;
     private final ConfirmationTokenRepository tokenRepository;
     private final BasketRepository basketRepository;
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
+    private final AddressRepository addressRepository;
 
     private final String DIRECTORY = "C:\\Users\\User\\Downloads\\epamProject\\epamProject\\src\\main\\resources\\userImages";
 
@@ -50,7 +55,7 @@ public class UserService {
     public UserService(
             UserRepository userRepository,
             Parser parser,
-            ModelMapper modelMapper, PasswordEncoder encoder, RegistrationService registrationService, ConfirmationTokenRepository tokenRepository, BasketRepository basketRepository) {
+            ModelMapper modelMapper, PasswordEncoder encoder, RegistrationService registrationService, ConfirmationTokenRepository tokenRepository, BasketRepository basketRepository, AddressRepository addressRepository) {
         this.userRepository = userRepository;
         this.parser = parser;
         this.modelMapper = modelMapper;
@@ -58,6 +63,7 @@ public class UserService {
         this.registrationService = registrationService;
         this.tokenRepository = tokenRepository;
         this.basketRepository = basketRepository;
+        this.addressRepository = addressRepository;
     }
 
     public void save(MultipartFile file) {
@@ -115,22 +121,22 @@ public class UserService {
         }
     }
 
-    public ResponseEntity<String> uploadProfilePicture(String username, MultipartFile file)  {
+    public ResponseEntity<String> uploadProfilePicture(String username, MultipartFile file) {
         try {
             UserEntity user = userRepository.findByEmail(username);
             if (user != null) {
-                if (!file.isEmpty() && file!=null) {
+                if (!file.isEmpty() && file != null) {
                     // Check if the directory exists, if not, create it
                     File directory = new File(DIRECTORY);
 
                     // Get the file name and save the uploaded file to the directory
                     String fileName = file.getOriginalFilename();
-                    System.out.println(fileName);
+
                     Path filePath = Paths.get(DIRECTORY, fileName);
                     Files.write(filePath, file.getBytes());
                     // Update the user's profile picture path in the database
                     String imagePath = DIRECTORY + File.separator + fileName;
-                    user.setImage("http://localhost:8080/users/userImages/" +fileName);
+                    user.setImage("http://localhost:8080/users/userImages/" + fileName);
                     userRepository.save(user);
                     return ResponseEntity.ok().body("Profile picture has set successfully");
                 } else {
@@ -140,8 +146,7 @@ public class UserService {
                 return ResponseEntity.badRequest().body("Username doesn't exist: " + username);
             }
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body("bad");
 
@@ -220,32 +225,32 @@ public class UserService {
     public void deleteAccount(String username) throws Exception {
         // Retrieve the user from the database
 
-            UserEntity user = userRepository.findByEmail(username);
+        UserEntity user = userRepository.findByEmail(username);
 
-            if (user == null) {
-                throw new Exception("User not found");
-            }
-            ConfirmationTokenEntity confirmationToken = tokenRepository.findByUserEmail(username);
-            basketRepository.deleteAllByUserEmail(username);
-            // Delete the confirmation token if it exists
-            if (confirmationToken != null) {
-                tokenRepository.delete(confirmationToken);
-            }
-            // Delete the user
+        if (user == null) {
+            throw new Exception("User not found");
+        }
+        ConfirmationTokenEntity confirmationToken = tokenRepository.findByUserEmail(username);
+        basketRepository.deleteAllByUserEmail(username);
+        // Delete the confirmation token if it exists
+        if (confirmationToken != null) {
+            tokenRepository.delete(confirmationToken);
+        }
+        // Delete the user
 
-            userRepository.delete(user);
+        userRepository.delete(user);
 
     }
 
     @Transactional
     public ResponseEntity<String> setAddress(String username, String country, String city, String street, String building, String postalCode) {
         UserEntity user = userRepository.findByEmail(username);
-      if(user == null){
-          return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with username:" + username);
-      }
-      if(country.isEmpty() || city.isEmpty() ||street.isEmpty() || building.isEmpty() ||postalCode.isEmpty()){
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fields cannot be empty");
-      }
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with username:" + username);
+        }
+        if (country.isEmpty() || city.isEmpty() || street.isEmpty() || building.isEmpty() || postalCode.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("fields cannot be empty");
+        }
         AddressEntity address = user.getAddress();
         if (address == null) {
             address = new AddressEntity();
@@ -255,31 +260,33 @@ public class UserService {
         address.setStreet(street);
         address.setBuilding(building);
         address.setPostalCode(postalCode);
-
+        addressRepository.save(address);
         user.setAddress(address);
-
         userRepository.save(user);
+
         return ResponseEntity.ok().body("Address has changed successfully");
     }
 
-        @Transactional
-        public ResponseEntity<String> setPhoneNumber(String username, String phoneNumber) {
-            UserEntity user = userRepository.findByEmail(username);
-            if(user == null){
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with username:" + username);
-            }
-            if(phoneNumber.isEmpty()){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number cannot be empty");
-            }
-            if(phoneNumber.length()>15){
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("the phone number cannot contain more than 15 digits");
-            }
-            if (!phoneNumber.matches("^\\+?[0-9 ]+$")) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("Invalid phone number format. Phone number should contain only digits and spaces, and should start with '+' if present.");
-            }
-            user.setPhoneNumber(phoneNumber);
-            userRepository.save(user);
-            return ResponseEntity.ok().body("Phone Number has changed successfully");
+    @Transactional
+    public ResponseEntity<String> setPhoneNumber(String username, String phoneNumber) {
+        UserEntity user = userRepository.findByEmail(username);
+        if (user == null) {
+            logger.error("User not found with username:" + username);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with username:" + username);
         }
+        if (phoneNumber.isEmpty()) {
+            logger.info("Phone number cannot be empty");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number cannot be empty");
+        }
+        System.out.println(phoneNumber);
+        phoneNumber = phoneNumber.substring(1, 13);
+
+        if (!phoneNumber.startsWith("+374") || phoneNumber.length() != 12 || !phoneNumber.substring(1).matches("\\d+")) {
+            logger.info("Phone number is not in the correct format");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Phone number is not in the correct format");
+        }
+        user.setPhoneNumber(phoneNumber);
+        userRepository.save(user);
+        return ResponseEntity.ok().body("Phone Number has changed successfully");
+    }
 }

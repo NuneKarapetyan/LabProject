@@ -51,6 +51,7 @@ public class BasketService {
 
         // Find the medicine by name
         MedicineEntity medicine = medicineRepository.findByName(medicineName);
+        System.out.println(medicine);
         if (medicine == null) {
             // Medicine not found
             logger.warn("medicine does not found:" + medicineName);
@@ -65,15 +66,32 @@ public class BasketService {
         }
 
         // Create a new basket item and save it
-        BasketItemEntity basketItem = new BasketItemEntity();
-        basketItem.setUser(user);
-        basketItem.setMedicine(medicine);
-        basketItem.setQuantity(1); // Assuming the quantity is 1 for simplicity
-        if (!medicine.isRequiresDoctorReceipt())
-            basketItem.setStatus(BasketItemStatus.APPROVED);
-        else
-            basketItem.setStatus(BasketItemStatus.ADDED);
-        basketRepository.save(basketItem);
+        BasketItemEntity basketItem = basketRepository.findByMedicineName(medicineName);
+        System.out.println(medicineName);
+        System.out.println(basketItem);
+
+        if(basketItem ==null) {
+            BasketItemEntity basketItem1 = new BasketItemEntity();
+            basketItem1.setUser(user);
+            basketItem1.setMedicine(medicine);
+            basketItem1.setQuantity(1); // Assuming the quantity is 1 for simplicity
+            if (!medicine.isRequiresDoctorReceipt())
+                basketItem1.setStatus(BasketItemStatus.APPROVED);
+            else
+                basketItem1.setStatus(BasketItemStatus.ADDED);
+            basketRepository.save(basketItem1);
+        }else{
+            basketItem.setUser(user);
+            basketItem.setMedicine(medicine);
+            basketItem.setQuantity(basketItem.getQuantity() +1);
+            if (!medicine.isRequiresDoctorReceipt())
+                basketItem.setStatus(BasketItemStatus.APPROVED);
+            else
+                basketItem.setStatus(BasketItemStatus.ADDED);
+            basketRepository.save(basketItem);
+        }
+
+
         logger.info(medicineName + "is added to basket");
 
         return ResponseEntity.ok("Medicine added to basket successfully.");
@@ -120,6 +138,8 @@ public class BasketService {
             basketItem.setQuantity(1); // Assuming quantity is 1 for simplicity
             basketItem.setStatus(BasketItemStatus.ADDED);
             basketItem.setPath(filePath);
+            MedicineEntity medicineEntity = medicineRepository.findByName(medicineName);
+            medicineEntity.setUploaded(true);
 
             // Save basket item to database
             basketRepository.save(basketItem);
@@ -163,22 +183,26 @@ public class BasketService {
         }
 
         // Create and return BasketDto object
-        return new BasketDto(username, items, totalCost);
+        return new BasketDto(username, items);
 
     }
     public ResponseEntity<String> removeMedicineFromBasket(String username, String medicineName) {
         // Find the basket item by username and medicine name
-        BasketItemEntity basketItem = basketRepository.findByUserEmailAndMedicineName(username, medicineName);
+        try {
+            BasketItemEntity basketItem = basketRepository.findByUserEmailAndMedicineName(username, medicineName);
 
-        // If basketItem is found, remove it from the repository
-        if (basketItem != null) {
-            basketRepository.delete(basketItem);
-            return ResponseEntity.ok("Medicine removed from basket successfully.");
+            // If basketItem is found, remove it from the repository
+            if (basketItem != null) {
+                basketRepository.delete(basketItem);
+                return ResponseEntity.ok("Medicine removed from basket successfully.");
+            }
+
+            // If basketItem is not found, return false
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Medicine not found in the basket.");
+        }catch(Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("bad req");
         }
-
-        // If basketItem is not found, return false
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Medicine not found in the basket.");
-
     }
 
     public boolean buyMedicines(String username) {

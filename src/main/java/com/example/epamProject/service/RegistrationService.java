@@ -23,11 +23,13 @@ import java.util.regex.Pattern;
 
 @Service
 public class RegistrationService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
     private final RoleRepository roleRepository;
     private final EmailService emailService;
     private final ConfirmationTokenRepository confirmationTokenRepository;
+
     private static final String CONFIRM_ACCOUNT_URL = "http://localhost:8080/confirm-account?token=";
     private static final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
 
@@ -60,7 +62,7 @@ public class RegistrationService {
             logger.warn("Password and confirm password does not match for user with email: {}", userDto.getEmail());
             return new ResponseEntity<>("Passwords do not match", HttpStatus.BAD_REQUEST);
         }
-        if(!isValidEmailAddress(userDto.getEmail())){
+        if (!isValidEmailAddress(userDto.getEmail())) {
             logger.warn("The provided email does not exist : {}", userDto.getEmail());
 
             return new ResponseEntity<>("The email address you provided doesn't exist", HttpStatus.BAD_REQUEST);
@@ -108,46 +110,43 @@ public class RegistrationService {
         }
         return "failed";
     }
-  /*  private boolean isPasswordStrong(String password) {
-        // Implement your password strength check logic here
-        // Example: At least 8 characters, containing at least one uppercase letter, one lowercase letter, and one digit
-        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$");
-    }*/
 
-  public ResponseEntity<String> isPasswordStrong(String password) {
-      // Password must be at least 8 characters long
-      if (password.length() < 8) {
-          logger.warn("Password must be at least 8 characters long.");
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must be at least 8 characters long.");
-      }
 
-      // Check for presence of uppercase letters
-      if (!Pattern.compile("[A-Z]").matcher(password).find()) {
-          logger.warn("Password must contain at least one uppercase letter.");
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one uppercase letter.");
-      }
+    public ResponseEntity<String> isPasswordStrong(String password) {
+        // Password must be at least 8 characters long
+        if (password.length() < 8) {
+            logger.warn("Password must be at least 8 characters long.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must be at least 8 characters long.");
+        }
 
-      // Check for presence of lowercase letters
-      if (!Pattern.compile("[a-z]").matcher(password).find()) {
-          logger.warn("Password must contain at least one lowercase letter.");
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one lowercase letter.");
-      }
+        // Check for presence of uppercase letters
+        if (!Pattern.compile("[A-Z]").matcher(password).find()) {
+            logger.warn("Password must contain at least one uppercase letter.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one uppercase letter.");
+        }
 
-      // Check for presence of numbers
-      if (!Pattern.compile("[0-9]").matcher(password).find()) {
-          logger.warn("Password must contain at least one number.");
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one number.");
-      }
+        // Check for presence of lowercase letters
+        if (!Pattern.compile("[a-z]").matcher(password).find()) {
+            logger.warn("Password must contain at least one lowercase letter.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one lowercase letter.");
+        }
 
-      // Check for presence of symbols
-      if (!Pattern.compile("[^A-Za-z0-9]").matcher(password).find()) {
-          logger.warn("Password must contain at least one symbol.");
-          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one symbol.");
-      }
+        // Check for presence of numbers
+        if (!Pattern.compile("[0-9]").matcher(password).find()) {
+            logger.warn("Password must contain at least one number.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one number.");
+        }
 
-      logger.info("Password is strong!");
-      return ResponseEntity.ok("Password is strong!");
-  }
+        // Check for presence of symbols
+        if (!Pattern.compile("[^A-Za-z0-9]").matcher(password).find()) {
+            logger.warn("Password must contain at least one symbol.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password must contain at least one symbol.");
+        }
+
+        logger.info("Password is strong!");
+        return ResponseEntity.ok("Password is strong!");
+    }
+
     public static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {

@@ -14,7 +14,7 @@ import java.util.List;
 public class BasketDto {
     private String username;
     private List<ItemDto> items;
-    private double totalCost;
+
 
  /*   public static BasketDto getUserBasket(UserEntity user, List<BasketItemEntity> basketItems) {
         BasketDto basketDto = new BasketDto();
