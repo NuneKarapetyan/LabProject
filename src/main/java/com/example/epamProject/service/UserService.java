@@ -1,5 +1,6 @@
 package com.example.epamProject.service;
 
+import com.example.epamProject.controller.SessionModel;
 import com.example.epamProject.controller.UserProfileResponse;
 import com.example.epamProject.csv.Parser;
 import com.example.epamProject.dto.AddressDto;
@@ -11,6 +12,7 @@ import com.example.epamProject.exceptions.CSVImportException;
 import com.example.epamProject.repo.AddressRepository;
 import com.example.epamProject.repo.BasketRepository;
 import com.example.epamProject.repo.ConfirmationTokenRepository;
+import com.example.epamProject.repo.SessionRepository;
 import com.example.epamProject.repo.UserRepository;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
@@ -47,15 +49,18 @@ public class UserService {
     private static final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
     private final AddressRepository addressRepository;
 
+    private final SessionRepository sessionRepository;
+
     private final String DIRECTORY = "C:\\Users\\User\\Downloads\\epamProject\\epamProject\\src\\main\\resources\\userImages";
 
 
     public UserService(
-            UserRepository userRepository,
-            Parser parser,
-            ModelMapper modelMapper, PasswordEncoder encoder,
-            ConfirmationTokenRepository tokenRepository,
-            BasketRepository basketRepository, AddressRepository addressRepository) {
+        UserRepository userRepository,
+        Parser parser,
+        ModelMapper modelMapper, PasswordEncoder encoder,
+        ConfirmationTokenRepository tokenRepository,
+        BasketRepository basketRepository, AddressRepository addressRepository, SessionRepository sessionRepository
+    ) {
         this.userRepository = userRepository;
         this.parser = parser;
         this.modelMapper = modelMapper;
@@ -63,6 +68,7 @@ public class UserService {
         this.tokenRepository = tokenRepository;
         this.basketRepository = basketRepository;
         this.addressRepository = addressRepository;
+        this.sessionRepository = sessionRepository;
     }
 
     public void save(MultipartFile file) {
@@ -106,14 +112,16 @@ public class UserService {
 
     public UserProfileResponse getUserByUsername(String username) {
         UserEntity user = userRepository.findByEmail(username);
+        var sessions = sessionRepository.findSessionEntitiesByEmail(username);
+        var sessionModels = sessions.stream().map(s -> new SessionModel(s.getSessionId(), s.getBrowserName())).toList();
         if (user != null) {
             UserProfileResponse userProfileResponse = new UserProfileResponse();
-            userProfileResponse.setPhoto(user.getImage());
             userProfileResponse.setFirstName(user.getFirstName());
             userProfileResponse.setLastName(user.getLastName());
             userProfileResponse.setPhoneNumber(user.getPhoneNumber());
             userProfileResponse.setAddress(String.valueOf(user.getAddress())); // Assuming getAddressAsString() returns a formatted address string
             userProfileResponse.setEmail(user.getEmail());
+            userProfileResponse.setActiveSessions(sessionModels);
             return userProfileResponse;
         } else {
             // Handle case when user is not found
