@@ -113,7 +113,7 @@ public class UserService {
     public UserProfileResponse getUserByUsername(String username) {
         UserEntity user = userRepository.findByEmail(username);
         var sessions = sessionRepository.findSessionEntitiesByEmail(username);
-        var sessionModels = sessions.stream().map(s -> new SessionModel(s.getSessionId(), s.getBrowserName())).toList();
+        var sessionModels = sessions.stream().map(s -> new SessionModel(s.getId(), s.getBrowserName())).toList();
         if (user != null) {
             UserProfileResponse userProfileResponse = new UserProfileResponse();
             userProfileResponse.setFirstName(user.getFirstName());

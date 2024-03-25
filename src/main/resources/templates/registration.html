@@ -94,6 +94,52 @@
         input[type="radio"] {
             display: none;
         }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 12px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+        #passwordStrength {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .weak {
+            color: red;
+        }
+
+        .medium {
+            color: orange;
+        }
+
+        .strong {
+            color: green;
+        }
 
         #signup:checked ~ .slider-tab {
             left: 50%;
@@ -217,6 +263,7 @@
             font-weight: 500;
             cursor: pointer;
         }
+
     </style>
 
 </head>
@@ -271,12 +318,20 @@
                     <input type="email" name="email" id="email" class="form-control" th:field="*{email}" placeholder="Email" required>
                 </div>
                 <div class="field">
-                    <input type="password" name="password" id="password" class="form-control" th:field="*{password}"  placeholder="Password" required>
+                    <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" th:field="*{phoneNumber}" placeholder="Phone Number" required>
                 </div>
+
+                <div id="phoneNumberError" class="error-message"></div>
+
+                <div class="field">
+                    <input type="password" name="password" id="password" class="form-control" th:field="*{password}" placeholder="Password" required oninput="checkPassword()">
+                </div>
+                <div id="passwordStrength"></div> <!-- Add this line for password strength indication -->
+                <button type="button" id="generatePassword" >Generate Strong Password</button>
                 <div class="field">
                     <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password" required id="confirmPassword">
                 </div>
-                <div class="error-message" id="passwordError"></div>
+                <div class="error-message"  id="passwordError"></div>
 
                 <div class="field btn">
                     <button  type="submit" id="signupForm" class="btn btn-rounded btn-primary btn-block"
@@ -317,142 +372,103 @@
             loginBtn.click();
         }
     });
-    function checkPassword() {
-        let password = document.getElementById("password").value;
-        let confirmPassword = document.getElementById("confirmPassword").value;
 
-        if (password !== confirmPassword) {
-            document.getElementById("passwordError").innerText = "Passwords do not match";
+     const queryString = window.location.search;
+     if (queryString.includes("loginError") && queryString.includes("bad-credentials")) {
+         const loginEmailElement = document.getElementById("loginEmail");
+         const loginPasswordElement = document.getElementById("loginPassword");
+         const index1 = queryString.indexOf("&email=");
+         const index2 = queryString.indexOf("&password=");
+         const pass = queryString.substring(index2+"&password=".length);
+         const email = queryString.substring(index1+"&email=".length,index2 );
+         loginEmailElement.innerText=email
+         loginPasswordElement.innerText=pass
+         window.history.pushState("", "", '/login');
+         document.getElementById("loginErrorMsg").style.visibility="visible"
+         document.getElementById("loginErrorMsg").style.color="red"
 
-            document.getElementById("password").classList.add("error-field");
-            document.getElementById("confirmPassword").classList.add("error-field");
-
-            return false;
-        }
-
-        document.getElementById("passwordError").innerText = "";
-        document.getElementById("password").classList.remove("error-field");
-        document.getElementById("confirmPassword").classList.remove("error-field");
-
-        return true;
-    }
-
-    // document.getElementById('signupForm').addEventListener('submit', function (event) {
-    //     if (!checkPassword()) {
-    //         event.preventDefault();
-    //     }
-    // });
-
-    const queryString = window.location.search;
-    if (queryString.includes("loginError") && queryString.includes("bad-credentials")) {
-        const loginEmailElement = document.getElementById("loginEmail");
-        const loginPasswordElement = document.getElementById("loginPassword");
-        const index1 = queryString.indexOf("&email=");
-        const index2 = queryString.indexOf("&password=");
-        const pass = queryString.substring(index2+"&password=".length);
-        const email = queryString.substring(index1+"&email=".length,index2 );
-        loginEmailElement.innerText=email
-        loginPasswordElement.innerText=pass
-        window.history.pushState("", "", '/login');
-        document.getElementById("loginErrorMsg").style.visibility="visible"
-        document.getElementById("loginErrorMsg").style.color="red"
-
-    }
-    console.log(queryString);
+     }
+     console.log(queryString);
 
 
-    // function checkPassword(){
-    //     let password=document.getElementById("password").value;
-    //     let camelCaseRegExp = /(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*-]).{12,}/;
-    //     if(camelCaseRegExp.test(password)){
-    //         console.log("SUCCESS");
-    //         return;
-    //     }
-    //     console.log("INVALID");
-    //     return;
-    // }
+     document.addEventListener('DOMContentLoaded', function () {
+         //Add event listener to the login form
+         document.getElementById('loginForm').addEventListener('click', function (event) {
+             document.getElementById('loginErrorMsg').style = "hidden"
+             event.preventDefault(); // Prevent the form from submitting normally
 
-    document.addEventListener('DOMContentLoaded', function () {
-        //Add event listener to the login form
-        document.getElementById('loginForm').addEventListener('click', function (event) {
-            document.getElementById('loginErrorMsg').style = "hidden"
-            event.preventDefault(); // Prevent the form from submitting normally
+             // Get the username and password from the form
+             const username = document.getElementById('loginEmail').value;
+             const password = document.getElementById('loginPassword').value;
 
-            // Get the username and password from the form
-            const username = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
+             // Call the authenticateUser function with the user's credentials
+             authenticateUser(username, password);
+         });
+     });
 
-            // Call the authenticateUser function with the user's credentials
-            authenticateUser(username, password);
-        });
-    });
-    // document.getElementById("loginForm").addEventListener("click", () =>{
-    //     console.log("login")
-    // })
+     function authenticateUser(username, password) {
+         // Make a request to your authentication endpoint to get the JWT token
+         fetch('http://localhost:8080/authenticate', {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json'
+             },
+             body: JSON.stringify({ username: username, password: password })
+         })
+             .then(response => {
+                 if (!response.ok) {
+                     throw new Error('Failed to authenticate user');
+                 }
+                 return response.json();
+             })
+             .then(data => {
+                 // Assuming the response contains the JWT token
+                 const token = data.token;
 
+                 // Store the token in localStorage
+                 localStorage.setItem('jwtToken', token);
 
-    function authenticateUser(username, password) {
-        // Make a request to your authentication endpoint to get the JWT token
-        fetch('http://localhost:8080/authenticate', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username: username, password: password })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to authenticate user');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Assuming the response contains the JWT token
-                const token = data.token;
+                 // Redirect the user to the medicint.html page
+                 window.location.href = 'medicine.html'; // Redirect to the medicint.html page
+             })
+             .catch(error => {
+                 console.error('Error authenticating user:', error);
+                 document.getElementById('loginErrorMsg').style.visibility = 'visible'
+                 document.getElementById('loginErrorMsg').style.color = 'darkred'
 
-                // Store the token in localStorage
-                localStorage.setItem('jwtToken', token);
-
-                // Redirect the user to the medicint.html page
-                window.location.href = 'medicine.html'; // Redirect to the medicint.html page
-            })
-            .catch(error => {
-                console.error('Error authenticating user:', error);
-                document.getElementById('loginErrorMsg').style.visibility = 'visible'
-                document.getElementById('loginErrorMsg').style.color = 'darkred'
-
-            });
-    }
-
+             });
+     }
     document.addEventListener('DOMContentLoaded', function () {
         //Add event listener to the login form
         // document.getElementById('loginErrorMsg').style = "hidden"
-
-        document.getElementById('signupForm').addEventListener('click', function (event) {if (!checkPassword()) {
-            event.preventDefault();
-        }
-
+        document.getElementById('signupForm').addEventListener('click', function (event)
+        {
+            if (checkPasswordStrength()) {
+                event.preventDefault();
+            }
             // Get the username and password from the form
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
 
             // Call the authenticateUser function with the user's credentials
-            registerUser(firstName, lastName, email, password, confirmPassword);
+            registerUser(firstName, lastName, email, phoneNumber, password, confirmPassword);
         });
     });
-    function registerUser(firstName, lastName, email, password, confirmPassword) {
+    function registerUser(firstName, lastName, email,phoneNumber, password, confirmPassword) {
         // Make a request to your authentication endpoint to get the JWT token
         fetch('http://localhost:8080/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ firstName: firstName, lastName: lastName, email: email, password: password,
-                confirmPassword: confirmPassword
-            })
+            body: JSON.stringify(
+                { firstName: firstName, lastName: lastName, email: email, phoneNumber:phoneNumber,password: password,
+                    confirmPassword: confirmPassword
+                })
         })
             .then(response => {
                 if (!response.ok) {
@@ -462,13 +478,208 @@
             })
             .catch(error => {
                 console.error('Error registration user:', error);
+                // alert(error);
                 // document.getElementById('loginErrorMsg').style.visibility = 'visible'
                 // document.getElementById('loginErrorMsg').style.color = 'darkred'
 
             });
     }
 
+    ////////////////////////////////
+    const passwordInput = document.getElementById('password');
+    const passwordStrength = document.getElementById('passwordStrength');
+    const confirmPasswordField = document.getElementById('confirmPassword');
+    const passwordError = document.getElementById('passwordError');
+    passwordInput.addEventListener('input', function() {
+        const password = this.value;
+        const strength = checkPasswordStrength(password);
+        displayPasswordStrength(strength);
+    });
 
+    passwordInput.addEventListener('input', validatePasswords)
+    confirmPasswordField.addEventListener('input', validatePasswords)
+    document.getElementById('generatePassword').addEventListener('click', function() {
+        const generatedPasswords = generateRandomStrongPassword();
+        document.getElementById('password').value = generatedPasswords.password;
+        document.getElementById('confirmPassword').value = generatedPasswords.confirmPassword;
+
+        // Update password strength indicator
+        document.getElementById('passwordStrength').innerText = 'Password Strength: ' + generatedPasswords.strength;
+
+        // Dispatch input event on the confirm password field
+        document.getElementById('confirmPassword').dispatchEvent(new Event('input'));
+    });
+
+    document.getElementById('phoneNumber').addEventListener('input', function() {
+        const phoneNumber = this.value.trim();
+        const phoneNumberError = document.getElementById('phoneNumberError');
+
+        // Regular expression to match the required format: +374 followed by exactly 8 numbers
+        const phoneNumberRegex = /^\+374\d{8}$/;
+
+        if (phoneNumberRegex.test(phoneNumber)) {
+            // Phone number is valid
+            phoneNumberError.innerText = '\n Valid phone number';
+            phoneNumberError.style.color = 'green';
+        } else {
+            // Phone number is invalid
+            phoneNumberError.innerText = ' \n Invalid phone number. Please enter a phone number starting with +374 followed by exactly 8 numbers.';
+            phoneNumberError.style.color = 'red';
+        }
+    });
+
+    document.getElementById('generatePassword').addEventListener('click', function() {
+        const generatedPasswords = generateRandomStrongPassword();
+        document.getElementById('password').value = generatedPasswords.password;
+        document.getElementById('confirmPassword').value = generatedPasswords.confirmPassword;
+
+        // Update password strength indicator
+        //document.getElementById('passwordStrength').innerText = 'Password Strength: ' + generatedPasswords.strength;
+        // Set the type attribute of both password fields to "text" to make the passwords visible
+        document.getElementById('password').type = 'text';
+        document.getElementById('confirmPassword').type = 'text';
+
+        // After 3 seconds, set the type attribute back to "password" to hide the passwords
+        setTimeout(function() {
+            document.getElementById('password').type = 'password';
+            document.getElementById('confirmPassword').type = 'password';
+        }, 3000);    });
+
+    /*document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        if (validatePasswords()) {
+            const formData = new FormData(this);
+            fetch('http://localhost:8080/register', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('User registered successfully');
+                        // Optionally redirect to another page
+                    } else {
+                        console.error('Failed to register user');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    });*/
+
+    // Function to validate passwords and display strength
+    function validatePasswords() {
+        const passwordStrength = document.getElementById('passwordStrength');
+        const passwordError = document.getElementById('passwordError');
+
+        const password = passwordInput.value.trim();
+        const confirmPassword = confirmPasswordField.value.trim();
+        // Check if passwords match
+        if (password !== confirmPassword) {
+            passwordError.innerText = 'Passwords do not match';
+            confirmPasswordField.setCustomValidity('Passwords do not match');
+        } else {
+            passwordError.innerText = '';
+            confirmPasswordField.setCustomValidity('');
+        }
+
+        // Check password strength
+        const strength = checkPasswordStrength(password);
+        displayPasswordStrength(strength, passwordStrength);
+
+        return true;
+    }
+
+    document.getElementById('confirmPassword').addEventListener('input', function() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = this.value;
+        const passwordError = document.getElementById('passwordError');
+
+        if (password !== confirmPassword) {
+            passwordError.innerText = 'Passwords do not match';
+        } else {
+            passwordError.innerText = '\n Passwords match';
+            passwordError.style.color='green';
+        }
+    });
+
+    function checkPasswordStrength(password) {
+        // Define your password strength criteria here
+        const strongRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*.])[A-Za-z\d!@#$%^&*.]{12,}$/;
+        let mediumRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*.])[A-Za-z!@#$%^&*.]{9,}$/;
+
+        if (strongRegExp.test(password)) {
+            return 'strong';
+        } else if (mediumRegExp.test(password)) {
+            return 'medium';
+        } else {
+            return 'weak';
+        }
+    }
+
+
+    // Function to display password strength
+    function displayPasswordStrength(strength) {
+        passwordStrength.innerText = 'Password Strength: ';
+        passwordStrength.classList.remove('weak', 'medium', 'strong');
+
+        if (strength === 'strong') {
+            passwordStrength.classList.add('strong');
+            passwordStrength.innerText += 'Strong';
+        } else if (strength === 'medium') {
+            passwordStrength.classList.add('medium');
+            passwordStrength.innerText += 'Medium';
+        } else {
+            passwordStrength.classList.add('weak');
+            passwordStrength.innerText += 'Weak';
+        }
+    }
+
+    function generateRandomStrongPassword() {
+        const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+        const numbers = '0123456789';
+        const specialCharacters = '!@#$%^&*';
+        const passwordLength = 12; // Change this if you want a different length
+
+        let randomPassword = '';
+
+        // Ensure at least one uppercase letter
+        randomPassword += uppercaseLetters[Math.floor(Math.random() * uppercaseLetters.length)];
+
+        // Ensure at least one lowercase letter
+        randomPassword += lowercaseLetters[Math.floor(Math.random() * lowercaseLetters.length)];
+
+        // Ensure at least one number
+        randomPassword += numbers[Math.floor(Math.random() * numbers.length)];
+
+        // Ensure at least one special character
+        randomPassword += specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+
+        // Fill the rest of the password with random characters
+        for (let i = 0; i < passwordLength - 4; i++) {
+            const allCharacters = uppercaseLetters + lowercaseLetters + numbers + specialCharacters;
+            randomPassword += allCharacters[Math.floor(Math.random() * allCharacters.length)];
+        }
+
+        // Shuffle the password characters to randomize
+        randomPassword = randomPassword.split('').sort(() => Math.random() - 0.5).join('');
+
+        // Generate confirmation password
+        const confirmationPassword = randomPassword;
+
+        // Check password strength
+        let passwordStrength = '';
+        if (passwordLength >= 12 && /[A-Z]/.test(randomPassword) && /[a-z]/.test(randomPassword) && /\d/.test(randomPassword) && /[!@#$%^&*]/.test(randomPassword)) {
+            passwordStrength = 'Strong';
+        } else if ((passwordLength >= 9 && /[A-Z]/.test(randomPassword) && /[a-z]/.test(randomPassword) && /\d/.test(randomPassword)) || (passwordLength >= 12 && /[A-Z]/.test(randomPassword) && /[a-z]/.test(randomPassword) && /\d/.test(randomPassword))) {
+            passwordStrength = 'Medium';
+        } else {
+            passwordStrength = 'Weak';
+        }
+
+        return { password: randomPassword, confirmPassword: confirmationPassword, strength: passwordStrength };
+    }
 </script>
 
 </body>

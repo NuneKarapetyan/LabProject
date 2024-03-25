@@ -214,13 +214,15 @@ public class UserController
     @Operation(security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> deleteSessionById(@RequestParam Integer sessionId)
     {
-        var jwtToken = sessionRepository.getById(sessionId).getToken();
-        System.out.println(jwtToken);
-        this.sessionRepository.deleteById(Long.valueOf(sessionId));
-        var tokenBlackListEntity = new TokenBlackListEntity();
-        tokenBlackListEntity.setToken(jwtToken);
-        this.blackListRepository.save(tokenBlackListEntity);
-        return ResponseEntity.accepted().body("Session deleted");
+
+            var jwtToken = sessionRepository.getById(sessionId).getToken();
+            System.out.println(jwtToken);
+            this.sessionRepository.deleteById(Long.valueOf(sessionId));
+            var tokenBlackListEntity = new TokenBlackListEntity();
+            tokenBlackListEntity.setToken(jwtToken);
+            this.blackListRepository.save(tokenBlackListEntity);
+            return ResponseEntity.accepted().body("Session deleted");
+
     }
 
     @PostConstruct

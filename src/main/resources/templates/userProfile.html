@@ -265,12 +265,15 @@
 
                 document.getElementById('profilePic').src = data.photo;
                 document.getElementById('phoneNumber').innerText = data.phoneNumber ? data.phoneNumber : 'not set';
-                document.getElementById('address').innerText = data.address === "null" ? "not set":addressData;
+                document.getElementById('address').innerText = data.address === "null" ? "not set" : data.address;
+
+                // Populate active sessions
                 var browsersText = '';
-                data.activeSessions.forEach(function(session) {
-                    browsersText += session.browser + '\n';
+                data.activeSessions.forEach(function(session, index) {
+                    let id = data.activeSessions[index].sessionid
+                    browsersText += session.browser + ` <button class="btn btn-danger"  onclick="deleteSession('${id}')">Delete</button><br>`;
                 });
-                document.getElementById('activeSessions').innerText = browsersText;
+                document.getElementById('activeSessions').innerHTML   = browsersText;
 
             })
             .catch(error => {
@@ -282,6 +285,29 @@
     document.getElementById("deleteAccountBtn").addEventListener("click", deleteAccount)
     document.getElementById("fileInputBtn").addEventListener("change", uploadProfilePicture)
 
+    function deleteSession(sessionId) {
+        const token = localStorage.getItem("jwtToken");
+        console.log("SID", sessionId)
+        fetch('http://localhost:8080/users/delete-session?sessionId=' + sessionId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete session');
+                }
+                // Refresh the user profile after deleting session
+                getUserProfile();
+            })
+            .catch(error => {
+                console.error('Error deleting session:', error);
+                console.error(sessionId);
+                // Optionally, provide feedback to the user that an error occurred
+            });
+    }
     function uploadProfilePicture() {
         // Implement logic to upload profile picture using your API endpoint
         // Retrieve file from input field and make API call
