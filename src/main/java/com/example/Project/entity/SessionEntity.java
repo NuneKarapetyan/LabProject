@@ -30,9 +30,10 @@ public class SessionEntity
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "token", nullable = false)
+    @Column(name = "token")
     private String token;
 
     @Column(name = "browserName", nullable = false)
     private String browserName;
+    private int attempts;
 }

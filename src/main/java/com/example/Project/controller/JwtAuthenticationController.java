@@ -46,34 +46,26 @@ public class JwtAuthenticationController
 
     @PostMapping(value = "/authenticate")
     @CrossOrigin(origins = "http://localhost:63342")
-    @Transactional
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest, HttpServletRequest request)
     {
         System.out.println(authenticationRequest.getUsername());
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
-        try
-        {
-            authenticationService.authenticate(
-                authenticationRequest.getUsername(),
-                authenticationRequest.getPassword()
-            );
-            final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
 
-            final String token = jwtTokUtil.generateToken(userDetails.getUsername());
+          return  authenticationService.authenticate(
+                authenticationRequest.getUsername(),
+                authenticationRequest.getPassword(),
+                userAgent
+            );
+           /* final UserDetails userDetails = userDetailsService
+                .loadUserByUsername(authenticationRequest.getUsername());
             SessionEntity sessionEntity = new SessionEntity();
+            final String token = jwtTokUtil.generateToken(userDetails.getUsername());
             sessionEntity.setToken(token);
             sessionEntity.setEmail(authenticationRequest.getUsername());
             var sessionId = UUID.randomUUID();
             sessionEntity.setSessionId(sessionId.toString());
             sessionEntity.setBrowserName(userAgent.getBrowser().getName());
-            this.sessionRepository.save(sessionEntity);
+            this.sessionRepository.save(sessionEntity);*/
 
-            return ResponseEntity.ok(new JwtResponse(token));
-        }
-        catch (Exception e)
-        {
-            return ResponseEntity.badRequest().body("Invalid login or password");
-        }
     }
 }
