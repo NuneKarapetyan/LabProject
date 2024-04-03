@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +7,16 @@
     <title>User Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
+        .btn{
+            border: 1px solid #7f2d8e16;
+        }
         body {
 
 
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #c2f382;
+            background-color: #ab3c9a58;
         }
         .container {
             max-width: 800px;
@@ -45,13 +49,13 @@
         .form-group input {
             width: 100%;
             padding: 8px;
-            border: 1px solid #ccc;
+            border: 1px solid #8d23833a;
             border-radius: 4px;
             box-sizing: border-box;
         }
         .form-group button {
             padding: 8px 12px;
-            background-color: #06a94d;
+            background-color: #9f35a634;
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -78,16 +82,16 @@
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
                 <div class="card">
-                    <div class="card-body" style="background-color: #def8cd;">
+                    <div class="card-body" style="background-color: #71207443;">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" id="profilePic" alt="Admin" class="rounded-circle" width="150">
-                            <label for="fileInputBtn" style="background-color:#06a94d;" class="btn btn-primary">Change photo</label>
+                            <img src="image.jpg" id="profilePic" alt="Admin" class="rounded-circle" width="150">
+                            <label for="fileInputBtn" style="background-color:#97278d51;" class="btn btn-primary">Change photo</label>
                             <input type="file" accept="image/png, image/gif, image/jpeg" style="display: none" id="fileInputBtn"/>
                             <div class="mt-3">
                                 <h4 id="fullName"></h4>
-<!--                                <p class="text-secondary mb-1">Full Stack Developer</p>-->
+                                <!--                                <p class="text-secondary mb-1">Full Stack Developer</p>-->
                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProfileModal">Delete account</button>
-<!--                                <button class="btn btn-outline-primary">Message</button>-->
+                                <!--                                <button class="btn btn-outline-primary">Message</button>-->
                             </div>
                         </div>
                     </div>
@@ -96,7 +100,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card mb-3">
-                    <div class="card-body"  style="background-color: #def8cd;">
+                    <div class="card-body"  style="background-color: #7f2d8e39;">
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Full Name</h6>
@@ -133,35 +137,19 @@
                                 <span id="phoneNumber"></span>
                                 <div class="mt-2">
                                     <input type="text" class="form-control" id="newPhoneNumber" placeholder="Enter new phone number">
-                                    <button  style="background-color:#06a94d;" class="btn btn-primary mt-2" onclick="changePhoneNumber()">Change Phone Number</button>
+                                    <button  style="background-color:#89209b7c;" class="btn btn-primary mt-2" onclick="changePhoneNumber()">Change Phone Number</button>
                                 </div>
                             </div>
                         </div>
                         <hr>
+                        <span id="address"></span>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div  style="background-color:#89209b7c; color: white" class="btn btn-info " data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change password</div>
+                            </div>
 
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">Address</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <span id="address"></span>
-                                <input type="text" class="form-control" id="country" placeholder="Country">
-                                <input type="text" class="form-control mt-2" id="city" placeholder="City">
-                                <input type="text" class="form-control mt-2" id="street" placeholder="Street">
-                                <input type="text" class="form-control mt-2" id="building" placeholder="Building">
-                                <input type="text" class="form-control mt-2" id="postalCode" placeholder="Postal Code">
-                                <button  style="background-color:#06a94d;"class="btn btn-primary mt-2" onclick="changeAddress()">Change Address</button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div  style="background-color:#06a94d; color: white" class="btn btn-info " data-bs-toggle="modal" data-bs-target="#changePasswordModal">Change password</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div  style="background-color:#06a94d; color: white" class="btn btn-info " data-bs-toggle="modal" data-bs-target="#activeSessions">Active sessions</div>
+                            <div class="col-sm-6">
+                                <div  style="background-color:#89209b7c; color: white" class="btn btn-info " data-bs-toggle="modal" data-bs-target="#activeSessions">Active sessions</div>
                             </div>
                         </div>
                     </div>
@@ -182,15 +170,15 @@
                 <button type="button" id="closeChangePasswordModal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="oldPasswordInput" class="form-label">Old password</label>
-                        <input type="password" class="form-control" id="oldPasswordInput">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-check-label" for="newPasswordInput">New password</label>
-                        <input type="password" class="form-control" id="newPasswordInput">
-                    </div>
-                    <button type="submit" id="changePasswordBtn" class="btn btn-success">Submit</button>
+                <div class="mb-3">
+                    <label for="oldPasswordInput" class="form-label">Old password</label>
+                    <input type="password" class="form-control" id="oldPasswordInput">
+                </div>
+                <div class="mb-3">
+                    <label class="form-check-label" for="newPasswordInput">New password</label>
+                    <input type="password" class="form-control" id="newPasswordInput">
+                </div>
+                <button type="submit" id="changePasswordBtn" class="btn btn-success">Submit</button>
             </div>
             <span style="display: none" id="successMessage">Password has changed successfully</span>
         </div>
@@ -207,31 +195,17 @@
             <div class="modal-body">
                 Are u sure?
                 <div style="display: flex; justify-content: center; align-items: center; gap: 15px">
-                        <button class="btn btn-danger" id="deleteAccountBtn">Yes</button>
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button class="btn btn-danger" id="deleteAccountBtn">Yes</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                 </div>
             </div>
-            <!--            <div class="modal-footer">-->
-            <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-            <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
-            <!--            </div>-->
+
         </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script>
-    /*function getUserProfile() {
-        // Use your API endpoint to get user profile data
-        // Update the HTML elements with the retrieved data
-        // Example:
-        document.getElementById('username').innerText = 'JohnDoe';
-        document.getElementById('firstName').innerText = 'John';
-        document.getElementById('phoneNumber').innerText = '1234567890';
-        document.getElementById('address').innerText = '123 Main St, City';
-        document.getElementById('email').innerText = 'john@example.com';
-        document.getElementById('profilePicture').src = 'https://via.placeholder.com/100';
-    }*/
     function getUserProfile() {
         const token = localStorage.getItem("jwtToken")
         fetch('http://localhost:8080/users/getProfile', {
@@ -299,19 +273,17 @@
                 if (!response.ok) {
                     throw new Error('Failed to delete session');
                 }
-                // Refresh the user profile after deleting session
+
                 getUserProfile();
             })
             .catch(error => {
                 console.error('Error deleting session:', error);
                 console.error(sessionId);
-                // Optionally, provide feedback to the user that an error occurred
+
             });
     }
     function uploadProfilePicture() {
-        // Implement logic to upload profile picture using your API endpoint
-        // Retrieve file from input field and make API call
-        // Example:
+
         let file = document.getElementById('fileInputBtn').files[0];
         let data = new FormData()
         data.append('file', file)
@@ -320,16 +292,15 @@
             method: 'PATCH',
             body: data,
             headers: {
-                /*'Content-Type': "multipart/form-data",*/
                 'Authorization': 'Bearer ' + token
-                // You may need to include additional headers like Authorization token if required by your backend
+
             }
         })
             .then(response => {
                 if (!response.ok) {
                     if (response.status === 401)
                     {
-                         location.href = 'registration.html'
+                        location.href = 'registration.html'
                     }
                     throw new Error('Failed to fetch user profile');
                 }
@@ -341,7 +312,7 @@
             .catch(error => {
                 console.error('Error fetching user profile:', error);
             })
-        // Make API call to upload profile picture
+
     }
 
     function changePassword() {
@@ -356,7 +327,7 @@
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + token
-                // You may need to include additional headers like Authorization token if required by your backend
+
             }
         })
             .then(response => {
@@ -380,19 +351,19 @@
             .catch(error => {
                 console.error('Error fetching user profile:', error);
             })
-        .finally(() =>{
-            document.getElementById("successMessage").style.display = "block"
+            .finally(() =>{
+                document.getElementById("successMessage").style.display = "block"
 
-            setTimeout(() => {
-                document.getElementById("successMessage").style.display = "none"
-                document.getElementById("closeChangePasswordModal").click()
-            }, 2000)
-        });
-        // Make API call to change password
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "none"
+                    document.getElementById("closeChangePasswordModal").click()
+                }, 2000)
+            });
+
     }
 
     async function deleteAccount() {
-        // Implement logic to delete account using your API endpoint
+
         const token = localStorage.getItem("jwtToken")
 
         try
@@ -402,17 +373,17 @@
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token
-                    // You may need to include additional headers like Authorization token if required by your backend
+
                 }
             });
             document.getElementById("closeChangePasswordModal1").click()
 
         }
         catch (error){
-        console.log(error)
+            console.log(error)
         }
 
-        // Make API call to delete account
+
     }
     function changePhoneNumber() {
         let newPhoneNumber = document.getElementById('newPhoneNumber').value;
@@ -433,15 +404,13 @@
                 return response.json();
             })
             .then(data => {
-                // Update UI to reflect the changed phone number
                 document.getElementById('phoneNumber').innerText = data.phoneNumber;
-                // Optionally, provide feedback to the user that the phone number has been updated
+
                 alert('Phone number updated successfully');
             })
             .catch(error => {
                 console.error('Error changing phone number:', error);
-                // Optionally, provide feedback to the user that an error occurred
-              //  alert('Failed to change phone number. Please try again later.');
+
             });
     }
 
@@ -473,20 +442,18 @@
                 return response.json();
             })
             .then(data => {
-                // Update UI to reflect the changed address
+
                 document.getElementById('address').innerText = data.address;
-                // Optionally, provide feedback to the user that the address has been updated
+
                 alert('Address updated successfully');
             })
             .catch(error => {
                 console.error('Error changing address:', error);
-                // Optionally, provide feedback to the user that an error occurred
-              //  alert('Failed to change address. Please try again later.');
+
             });
 
     }
 
-    // Load user profile when the page loads
     window.onload = function() {
         getUserProfile();
     };

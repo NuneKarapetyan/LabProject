@@ -1,0 +1,940 @@
+09:03:31.536 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+09:03:31.586 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 29584 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+09:03:31.587 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+09:03:32.420 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:03:32.526 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 92 ms. Found 6 JPA repository interfaces.
+09:03:33.633 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:03:33.648 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:03:33.650 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:03:33.651 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+09:03:33.751 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:03:33.752 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2089 ms
+09:03:33.965 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:03:34.097 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:03:34.186 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:03:34.506 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:03:34.561 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:03:35.146 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@773f3360
+09:03:35.149 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:03:36.985 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:03:37.112 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:03:37.478 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:03:38.486 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:03:38.897 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@28fdce67, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@24c9a52a, org.springframework.security.web.context.SecurityContextHolderFilter@7e7e34ef, org.springframework.security.web.header.HeaderWriterFilter@3d28c0af, org.springframework.web.filter.CorsFilter@55105271, org.springframework.security.web.authentication.logout.LogoutFilter@2abe5132, com.example.Project.config.JwtRequestFilter@23ba2c1e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@35c646b5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6351efa6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@126a8548, org.springframework.security.web.session.SessionManagementFilter@5fe5f2f0, org.springframework.security.web.access.ExceptionTranslationFilter@529a2d6f, org.springframework.security.web.access.intercept.AuthorizationFilter@6f8c6694]
+09:03:39.364 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:03:39.382 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:03:39.393 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 8.267 seconds (process running for 9.099)
+09:06:08.527 [http-nio-8080-exec-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+09:06:08.534 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+09:06:08.536 [http-nio-8080-exec-4] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+09:06:08.567 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /confirm-account?token=2f522c1e-546a-44b4-8ec5-3e8d4519d9bc
+09:06:08.575 [http-nio-8080-exec-4] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:06:08.577 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:06:08.577 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /confirm-account?token=2f522c1e-546a-44b4-8ec5-3e8d4519d9bc
+09:06:08.617 [http-nio-8080-exec-4] INFO  c.e.P.c.RegistrationController - Received confirmation token: 2f522c1e-546a-44b4-8ec5-3e8d4519d9bc
+09:06:08.775 [http-nio-8080-exec-4] INFO  c.e.P.c.RegistrationController - Confirmation result: success
+09:06:08.851 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /success
+09:06:08.851 [http-nio-8080-exec-2] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:06:08.851 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:06:08.851 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /success
+09:06:09.192 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+09:06:09.192 [http-nio-8080-exec-6] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:06:09.192 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:06:09.208 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+09:06:09.210 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:07:05.933 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /register
+09:07:05.958 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+09:07:05.958 [http-nio-8080-exec-5] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:07:05.958 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:07:05.958 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+09:07:06.083 [http-nio-8080-exec-5] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: nunekarapetyan59@gmail.com
+09:07:06.083 [http-nio-8080-exec-5] INFO  c.e.P.service.RegistrationService - Registering user with email: nunekarapetyan59@gmail.com
+09:07:06.083 [http-nio-8080-exec-5] INFO  c.e.P.service.RegistrationService - Password is strong!
+09:07:06.099 [http-nio-8080-exec-5] WARN  c.e.P.service.RegistrationService - Email nunekarapetyan59@gmail.com is already in use
+09:07:06.100 [http-nio-8080-exec-5] INFO  c.e.P.c.RegistrationController - Registration result: Email is already in use
+09:07:45.394 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+09:07:45.394 [http-nio-8080-exec-7] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:07:45.394 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:07:45.394 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+09:07:45.401 [http-nio-8080-exec-7] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: nunson05@gmaail.com
+09:07:45.401 [http-nio-8080-exec-7] INFO  c.e.P.service.RegistrationService - Registering user with email: nunson05@gmaail.com
+09:07:45.402 [http-nio-8080-exec-7] INFO  c.e.P.service.RegistrationService - Password is strong!
+09:07:49.563 [http-nio-8080-exec-7] INFO  c.e.P.service.RegistrationService - Confirmation Token: 4530ce34-3f84-443d-87ba-746125b50ba4
+09:07:49.563 [http-nio-8080-exec-7] INFO  c.e.P.c.RegistrationController - Registration result: Verify email by the link sent on your email address
+09:37:12.320 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:37:12.323 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:37:12.328 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:37:14.245 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+09:37:14.290 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 25168 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+09:37:14.295 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+09:37:15.352 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:37:15.423 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 62 ms. Found 5 JPA repository interfaces.
+09:37:16.452 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:37:16.467 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:37:16.469 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:37:16.470 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+09:37:16.563 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:37:16.564 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2138 ms
+09:37:16.744 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:37:16.839 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:37:16.905 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:37:17.218 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:37:17.251 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:37:17.693 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@25dcf1b6
+09:37:17.695 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:37:19.310 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:37:19.430 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:37:19.812 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:37:20.648 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:37:21.005 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4fe03c06, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@79f14c56, org.springframework.security.web.context.SecurityContextHolderFilter@7313e4fb, org.springframework.security.web.header.HeaderWriterFilter@45dce9f7, org.springframework.web.filter.CorsFilter@19f007c4, org.springframework.security.web.authentication.logout.LogoutFilter@7902a4d7, com.example.Project.config.JwtRequestFilter@66f88fd3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@620ba19c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@179367ff, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@73790bb5, org.springframework.security.web.session.SessionManagementFilter@19aa9540, org.springframework.security.web.access.ExceptionTranslationFilter@2a64e2d0, org.springframework.security.web.access.intercept.AuthorizationFilter@14d44e72]
+09:37:21.456 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:37:21.488 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:37:21.503 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 7.622 seconds (process running for 8.341)
+09:38:29.396 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:38:29.398 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:38:29.408 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:39:15.891 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+09:39:15.930 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 25208 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+09:39:15.931 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+09:39:16.754 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:39:16.831 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 5 JPA repository interfaces.
+09:39:17.686 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:39:17.696 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:39:17.697 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:39:17.698 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+09:39:17.763 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:39:17.763 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1765 ms
+09:39:17.905 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:39:17.964 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:39:17.997 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:39:18.295 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:39:18.331 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:39:18.709 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@352c3d70
+09:39:18.712 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:39:20.030 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:39:20.146 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:39:20.470 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:39:21.372 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:39:21.650 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ed761dc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@578081e5, org.springframework.security.web.context.SecurityContextHolderFilter@3622c9f0, org.springframework.security.web.header.HeaderWriterFilter@6afd0ef8, org.springframework.web.filter.CorsFilter@6c1f1c03, org.springframework.security.web.authentication.logout.LogoutFilter@1f9ec3e7, com.example.Project.config.JwtRequestFilter@7df1fc5a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5baabba, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@253fb3fa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@69e3e1d9, org.springframework.security.web.session.SessionManagementFilter@620ba19c, org.springframework.security.web.access.ExceptionTranslationFilter@10c9bd51, org.springframework.security.web.access.intercept.AuthorizationFilter@19f007c4]
+09:39:22.042 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:39:22.063 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:39:22.075 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 6.499 seconds (process running for 7.188)
+09:39:48.149 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:39:48.152 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:39:48.161 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:39:50.165 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+09:39:50.206 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 14744 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+09:39:50.208 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+09:39:50.929 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:39:50.998 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 60 ms. Found 5 JPA repository interfaces.
+09:39:51.874 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:39:51.886 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:39:51.888 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:39:51.889 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+09:39:51.966 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:39:51.967 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1686 ms
+09:39:52.127 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:39:52.192 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:39:52.232 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:39:52.533 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:39:52.565 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:39:52.911 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54496c2d
+09:39:52.914 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:39:54.226 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:39:54.351 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:39:54.648 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:39:55.528 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:39:55.853 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@538c90bf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62bcfa01, org.springframework.security.web.context.SecurityContextHolderFilter@6afd0ef8, org.springframework.security.web.header.HeaderWriterFilter@6cf71064, org.springframework.web.filter.CorsFilter@b549c4a, org.springframework.security.web.authentication.logout.LogoutFilter@4268c16, com.example.Project.config.JwtRequestFilter@2fb9695a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a8042a5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6be6cb16, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72412c3d, org.springframework.security.web.session.SessionManagementFilter@4a52178, org.springframework.security.web.access.ExceptionTranslationFilter@4c24063c, org.springframework.security.web.access.intercept.AuthorizationFilter@7508912e]
+09:39:56.245 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:39:56.273 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:39:56.288 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 6.448 seconds (process running for 7.14)
+09:40:10.971 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:40:10.974 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:40:10.990 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:40:24.710 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+09:40:24.752 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 17392 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+09:40:24.754 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+09:40:25.401 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:40:25.455 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 47 ms. Found 5 JPA repository interfaces.
+09:40:26.228 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:40:26.238 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:40:26.240 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:40:26.241 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+09:40:26.299 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:40:26.300 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1475 ms
+09:40:26.418 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:40:26.462 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:40:26.491 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:40:26.713 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:40:26.739 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:40:27.028 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54496c2d
+09:40:27.030 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:40:28.303 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:40:28.397 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:40:28.682 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:40:29.465 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:40:29.762 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62bcfa01, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b549c4a, org.springframework.security.web.context.SecurityContextHolderFilter@47fe4c3e, org.springframework.security.web.header.HeaderWriterFilter@4b9b57d9, org.springframework.web.filter.CorsFilter@72412c3d, org.springframework.security.web.authentication.logout.LogoutFilter@673ce246, com.example.Project.config.JwtRequestFilter@2fb9695a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6be6cb16, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@69ee825c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@457f43a2, org.springframework.security.web.session.SessionManagementFilter@10c9bd51, org.springframework.security.web.access.ExceptionTranslationFilter@3dd22110, org.springframework.security.web.access.intercept.AuthorizationFilter@1f9ec3e7]
+09:40:30.096 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:40:30.115 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:40:30.125 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 5.729 seconds (process running for 6.418)
+09:41:56.509 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+09:41:56.512 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+09:41:56.524 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+09:41:59.257 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+09:41:59.292 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 32868 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+09:41:59.293 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+09:41:59.984 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+09:42:00.076 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 5 JPA repository interfaces.
+09:42:01.079 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+09:42:01.092 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+09:42:01.094 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+09:42:01.094 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+09:42:01.178 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+09:42:01.179 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1817 ms
+09:42:01.336 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+09:42:01.388 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+09:42:01.451 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+09:42:01.689 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+09:42:01.713 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+09:42:02.132 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@352c3d70
+09:42:02.135 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+09:42:03.611 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+09:42:04.147 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+09:42:04.520 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+09:42:05.428 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+09:42:05.792 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@72412c3d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@457f43a2, org.springframework.security.web.context.SecurityContextHolderFilter@6be6cb16, org.springframework.security.web.header.HeaderWriterFilter@b94c22d, org.springframework.web.filter.CorsFilter@4016d5fe, org.springframework.security.web.authentication.logout.LogoutFilter@124b1369, com.example.Project.config.JwtRequestFilter@2fb9695a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5c44bce3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@444958a4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f8fa77a, org.springframework.security.web.session.SessionManagementFilter@6afd0ef8, org.springframework.security.web.access.ExceptionTranslationFilter@4b9b57d9, org.springframework.security.web.access.intercept.AuthorizationFilter@538c90bf]
+09:42:06.235 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+09:42:06.264 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+09:42:06.281 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 7.321 seconds (process running for 7.968)
+09:44:26.629 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+09:44:26.629 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+09:44:26.631 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+09:44:26.647 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /users/getProfile
+09:44:26.670 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:44:26.787 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:44:26.798 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+09:44:26.799 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:45:28.413 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /register
+09:45:28.418 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+09:45:28.422 [http-nio-8080-exec-5] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:45:28.422 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:45:28.422 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+09:45:28.513 [http-nio-8080-exec-5] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: nunson05@gmaail.com
+09:45:28.513 [http-nio-8080-exec-5] INFO  c.e.P.service.RegistrationService - Registering user with email: nunson05@gmaail.com
+09:45:28.513 [http-nio-8080-exec-5] INFO  c.e.P.service.RegistrationService - Password is strong!
+09:45:29.100 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+09:45:29.103 [http-nio-8080-exec-3] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:45:29.104 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:45:29.104 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+09:45:29.104 [http-nio-8080-exec-3] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: nunson05@gmaail.com
+09:45:29.104 [http-nio-8080-exec-3] INFO  c.e.P.service.RegistrationService - Registering user with email: nunson05@gmaail.com
+09:45:29.104 [http-nio-8080-exec-3] INFO  c.e.P.service.RegistrationService - Password is strong!
+09:45:29.112 [http-nio-8080-exec-3] WARN  c.e.P.service.RegistrationService - Email nunson05@gmaail.com is already in use
+09:45:29.112 [http-nio-8080-exec-3] INFO  c.e.P.c.RegistrationController - Registration result: Email is already in use
+09:45:33.037 [http-nio-8080-exec-5] INFO  c.e.P.service.RegistrationService - Confirmation Token: c134e77b-5594-43a6-9688-21ec666f36af
+09:45:33.037 [http-nio-8080-exec-5] INFO  c.e.P.c.RegistrationController - Registration result: Verify email by the link sent on your email address
+09:45:49.534 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+09:45:49.535 [http-nio-8080-exec-8] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:45:49.535 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:45:49.535 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+09:45:49.537 [http-nio-8080-exec-8] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: nunekarapetyan59@gmail.com
+09:45:49.537 [http-nio-8080-exec-8] INFO  c.e.P.service.RegistrationService - Registering user with email: nunekarapetyan59@gmail.com
+09:45:49.537 [http-nio-8080-exec-8] INFO  c.e.P.service.RegistrationService - Password is strong!
+09:45:53.586 [http-nio-8080-exec-8] INFO  c.e.P.service.RegistrationService - Confirmation Token: b0ae4115-2773-438b-ba1b-55b6227ae00c
+09:45:53.586 [http-nio-8080-exec-8] INFO  c.e.P.c.RegistrationController - Registration result: Verify email by the link sent on your email address
+09:46:10.790 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /confirm-account?token=b0ae4115-2773-438b-ba1b-55b6227ae00c
+09:46:10.790 [http-nio-8080-exec-2] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:46:10.790 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:46:10.791 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /confirm-account?token=b0ae4115-2773-438b-ba1b-55b6227ae00c
+09:46:10.799 [http-nio-8080-exec-2] INFO  c.e.P.c.RegistrationController - Received confirmation token: b0ae4115-2773-438b-ba1b-55b6227ae00c
+09:46:10.853 [http-nio-8080-exec-2] INFO  c.e.P.c.RegistrationController - Confirmation result: success
+09:46:10.876 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /success
+09:46:10.876 [http-nio-8080-exec-9] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:46:10.876 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:46:10.879 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /success
+09:46:11.189 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+09:46:11.189 [http-nio-8080-exec-10] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:46:11.189 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:46:11.189 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+09:46:11.189 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:46:26.621 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /authenticate
+09:46:26.628 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+09:46:26.629 [http-nio-8080-exec-6] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:46:26.629 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:46:26.629 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+09:46:27.089 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+09:46:29.372 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /users/getProfile
+09:46:29.376 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:46:29.397 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+09:46:43.028 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:46:43.045 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+09:46:43.719 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:46:43.735 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+09:46:44.832 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:46:44.851 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+09:46:59.111 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:46:59.126 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+09:47:41.347 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:47:41.359 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+09:53:39.184 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+09:53:39.184 [http-nio-8080-exec-4] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:53:39.186 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:53:39.186 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+09:53:39.376 [http-nio-8080-exec-4] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+09:54:24.640 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+09:54:24.640 [http-nio-8080-exec-3] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:54:24.640 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:54:24.640 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+09:54:24.867 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+09:54:52.471 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+09:54:52.471 [http-nio-8080-exec-5] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+09:54:52.471 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+09:54:52.471 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+09:54:52.667 [http-nio-8080-exec-5] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+09:54:54.662 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+09:54:54.677 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+10:00:45.637 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+10:00:45.653 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+10:06:14.647 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:06:14.650 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:06:14.657 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:06:22.247 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+10:06:22.289 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 32828 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+10:06:22.290 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+10:06:23.037 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:06:23.114 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 69 ms. Found 5 JPA repository interfaces.
+10:06:24.126 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:06:24.137 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:06:24.139 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:06:24.140 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+10:06:24.228 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:06:24.229 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1867 ms
+10:06:24.392 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:06:24.454 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+10:06:24.492 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+10:06:24.749 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+10:06:24.778 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:06:25.152 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@113d0f75
+10:06:25.155 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:06:26.635 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:06:26.744 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:06:27.074 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+10:06:28.037 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:06:28.368 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5146ae5e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@642270ad, org.springframework.security.web.context.SecurityContextHolderFilter@251d64d6, org.springframework.security.web.header.HeaderWriterFilter@76e5d5e5, org.springframework.web.filter.CorsFilter@439c706, org.springframework.security.web.authentication.logout.LogoutFilter@1dfadb7, com.example.Project.config.JwtRequestFilter@87cb1d8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17e96b3c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d63534d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17e427b6, org.springframework.security.web.session.SessionManagementFilter@3bea7134, org.springframework.security.web.access.ExceptionTranslationFilter@b41ceac, org.springframework.security.web.access.intercept.AuthorizationFilter@4eff65ce]
+10:06:28.792 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:06:28.817 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+10:06:28.834 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 6.904 seconds (process running for 7.58)
+10:10:45.346 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:10:45.347 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:10:45.349 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+10:10:45.368 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+10:10:45.553 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+10:11:03.469 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+10:11:03.478 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+10:11:03.484 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+10:11:03.484 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+10:11:20.780 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /authenticate
+10:11:20.784 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+10:11:20.785 [http-nio-8080-exec-6] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+10:11:20.785 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+10:11:20.787 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+10:11:21.098 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+10:11:23.304 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+10:11:23.319 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+10:14:26.647 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:14:26.647 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:14:26.662 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:41:12.744 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+10:41:12.798 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 10704 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+10:41:12.807 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+10:41:13.976 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:41:14.082 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 85 ms. Found 5 JPA repository interfaces.
+10:41:15.314 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:41:15.329 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:41:15.332 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:41:15.334 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+10:41:15.429 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:41:15.430 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2410 ms
+10:41:15.630 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:41:15.717 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+10:41:15.783 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+10:41:16.082 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+10:41:16.110 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:41:16.533 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@356f20b7
+10:41:16.536 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:41:18.136 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:41:18.246 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:41:18.663 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+10:41:19.764 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:41:20.185 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@186f7553, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44835de9, org.springframework.security.web.context.SecurityContextHolderFilter@28fa0ff8, org.springframework.security.web.header.HeaderWriterFilter@6d543ec2, org.springframework.web.filter.CorsFilter@734d870f, org.springframework.security.web.authentication.logout.LogoutFilter@1703e50d, com.example.Project.config.JwtRequestFilter@3c5d183, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4698ae6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@557ed49a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2542e124, org.springframework.security.web.session.SessionManagementFilter@1b6824c1, org.springframework.security.web.access.ExceptionTranslationFilter@2c48eb31, org.springframework.security.web.access.intercept.AuthorizationFilter@17e96b3c]
+10:41:20.728 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:41:20.745 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+10:41:20.745 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+10:41:20.745 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+10:41:20.771 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+10:41:20.792 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+10:41:20.823 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+10:42:06.440 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+10:42:06.481 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 33592 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+10:42:06.482 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+10:42:07.129 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+10:42:07.216 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 77 ms. Found 5 JPA repository interfaces.
+10:42:08.237 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+10:42:08.251 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+10:42:08.253 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+10:42:08.254 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+10:42:08.340 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+10:42:08.341 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1783 ms
+10:42:08.494 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+10:42:08.553 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+10:42:08.600 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+10:42:08.858 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+10:42:08.892 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+10:42:09.276 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@236b4a44
+10:42:09.278 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+10:42:10.811 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+10:42:10.911 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+10:42:11.319 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+10:42:12.384 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+10:42:12.737 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4f86cd50, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@538c90bf, org.springframework.security.web.context.SecurityContextHolderFilter@32787dee, org.springframework.security.web.header.HeaderWriterFilter@3dd22110, org.springframework.web.filter.CorsFilter@62bcfa01, org.springframework.security.web.authentication.logout.LogoutFilter@6e92f150, com.example.Project.config.JwtRequestFilter@2fb9695a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@47fe4c3e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a8042a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b549c4a, org.springframework.security.web.session.SessionManagementFilter@9da20f1, org.springframework.security.web.access.ExceptionTranslationFilter@33428132, org.springframework.security.web.access.intercept.AuthorizationFilter@1940bacd]
+10:42:13.273 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+10:42:13.297 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+10:42:13.323 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 7.196 seconds (process running for 7.851)
+10:42:27.964 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+10:42:27.964 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+10:42:27.964 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+10:42:27.989 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /authenticate
+10:42:28.021 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+10:42:28.029 [http-nio-8080-exec-8] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+10:42:28.031 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+10:42:28.031 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+10:42:28.675 [http-nio-8080-exec-8] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+10:42:30.304 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+10:42:30.404 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+10:42:33.440 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /users/delete-session?sessionId=6
+10:42:33.447 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing PUT /users/delete-session?sessionId=6
+10:42:33.470 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured PUT /users/delete-session?sessionId=6
+10:42:33.522 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+10:42:33.531 [http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [session was deleted please login again] with root cause
+jakarta.servlet.ServletException: session was deleted please login again
+	at com.example.Project.config.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:59)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+10:42:33.539 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+10:42:33.539 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+11:19:20.553 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /register
+11:19:20.561 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+11:19:20.561 [http-nio-8080-exec-9] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+11:19:20.561 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+11:19:20.561 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+11:19:20.576 [http-nio-8080-exec-9] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: hellen.hovhannisyan.01@gmail.com
+11:19:20.576 [http-nio-8080-exec-9] INFO  c.e.P.service.RegistrationService - Registering user with email: hellen.hovhannisyan.01@gmail.com
+11:19:20.576 [http-nio-8080-exec-9] INFO  c.e.P.service.RegistrationService - Password is strong!
+11:19:24.810 [http-nio-8080-exec-9] INFO  c.e.P.service.RegistrationService - Confirmation Token: 1349effa-fadd-470e-bf20-b6e9373a27ae
+11:19:24.810 [http-nio-8080-exec-9] INFO  c.e.P.c.RegistrationController - Registration result: Verify email by the link sent on your email address
+11:19:27.717 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+11:19:27.719 [http-nio-8080-exec-2] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+11:19:27.719 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+11:19:27.719 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+11:19:27.719 [http-nio-8080-exec-2] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: hellen.hovhannisyan.01@gmail.com
+11:19:27.719 [http-nio-8080-exec-2] INFO  c.e.P.service.RegistrationService - Registering user with email: hellen.hovhannisyan.01@gmail.com
+11:19:27.721 [http-nio-8080-exec-2] INFO  c.e.P.service.RegistrationService - Password is strong!
+11:19:27.726 [http-nio-8080-exec-2] WARN  c.e.P.service.RegistrationService - Email hellen.hovhannisyan.01@gmail.com is already in use
+11:19:27.726 [http-nio-8080-exec-2] INFO  c.e.P.c.RegistrationController - Registration result: Email is already in use
+11:20:23.607 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /authenticate
+11:20:23.616 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+11:20:23.618 [http-nio-8080-exec-8] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+11:20:23.619 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+11:20:23.619 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+11:20:23.827 [http-nio-8080-exec-8] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+11:20:30.025 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /users/getProfile
+11:20:30.031 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+11:20:30.048 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+11:50:16.980 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+11:50:16.987 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+11:50:16.995 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+11:50:21.299 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+11:50:21.346 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 15516 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+11:50:21.347 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+11:50:22.108 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:50:22.175 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 56 ms. Found 5 JPA repository interfaces.
+11:50:23.031 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+11:50:23.041 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+11:50:23.043 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+11:50:23.043 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+11:50:23.120 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:50:23.121 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1675 ms
+11:50:23.308 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:50:23.370 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+11:50:23.426 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11:50:23.685 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:50:23.716 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11:50:24.001 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@369a95a5
+11:50:24.003 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11:50:25.312 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11:50:25.414 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:50:25.755 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+11:50:26.927 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:50:27.334 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6cfa20c1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@46e2a773, org.springframework.security.web.context.SecurityContextHolderFilter@6d543ec2, org.springframework.security.web.header.HeaderWriterFilter@7685912e, org.springframework.web.filter.CorsFilter@4ec1192f, org.springframework.security.web.authentication.logout.LogoutFilter@693afcd1, com.example.Project.config.JwtRequestFilter@267d9cc0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@79dd79eb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@368617cd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b926efa, org.springframework.security.web.session.SessionManagementFilter@36f93ea3, org.springframework.security.web.access.ExceptionTranslationFilter@545d772e, org.springframework.security.web.access.intercept.AuthorizationFilter@1e368085]
+11:50:27.814 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+11:50:27.840 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+11:50:27.852 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 6.939 seconds (process running for 7.821)
+12:02:35.760 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:02:35.760 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:02:35.765 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+12:02:35.791 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /authenticate
+12:02:35.827 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+12:02:35.833 [http-nio-8080-exec-3] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:02:35.833 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:02:35.833 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+12:02:36.424 [http-nio-8080-exec-3] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to find user ''
+12:18:55.893 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /register
+12:18:55.898 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+12:18:55.899 [http-nio-8080-exec-10] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:18:55.899 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:18:55.900 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+12:18:55.909 [http-nio-8080-exec-10] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: 
+12:18:55.909 [http-nio-8080-exec-10] INFO  c.e.P.service.RegistrationService - Registering user with email: 
+12:18:55.909 [http-nio-8080-exec-10] WARN  c.e.P.service.RegistrationService - Password must be at least 8 characters long.
+12:18:55.916 [http-nio-8080-exec-10] WARN  c.e.P.service.RegistrationService - Fields cannot be empty for user with email: 
+12:18:55.916 [http-nio-8080-exec-10] INFO  c.e.P.c.RegistrationController - Registration result: Fields cannot be empty
+12:19:21.475 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+12:19:21.475 [http-nio-8080-exec-6] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:19:21.475 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:19:21.475 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+12:19:21.671 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to find user 'hellen.hovhannisyan.01@g'
+12:19:29.259 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+12:19:29.259 [http-nio-8080-exec-7] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:19:29.259 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:19:29.259 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+12:19:29.498 [http-nio-8080-exec-7] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+12:23:48.250 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+12:23:48.252 [http-nio-8080-exec-2] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:23:48.252 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:23:48.252 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+12:23:48.451 [http-nio-8080-exec-2] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+12:23:50.371 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+12:23:50.371 [http-nio-8080-exec-9] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:23:50.371 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:23:50.371 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+12:23:50.578 [http-nio-8080-exec-9] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+12:23:59.362 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+12:23:59.362 [http-nio-8080-exec-8] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:23:59.362 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:23:59.362 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+12:23:59.570 [http-nio-8080-exec-8] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+12:24:21.755 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+12:24:21.758 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+12:24:21.766 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+12:24:25.324 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+12:24:25.384 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 20908 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+12:24:25.384 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+12:24:26.439 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+12:24:26.507 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 61 ms. Found 5 JPA repository interfaces.
+12:24:27.522 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+12:24:27.532 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+12:24:27.533 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+12:24:27.534 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+12:24:27.625 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+12:24:27.626 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2112 ms
+12:24:27.805 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+12:24:27.872 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+12:24:27.915 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+12:24:28.201 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+12:24:28.243 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+12:24:28.671 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4213bc3e
+12:24:28.673 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+12:24:30.035 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+12:24:30.176 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+12:24:30.561 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+12:24:31.590 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+12:24:31.909 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@541ea657, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7308e2d6, org.springframework.security.web.context.SecurityContextHolderFilter@2976d625, org.springframework.security.web.header.HeaderWriterFilter@726e780a, org.springframework.web.filter.CorsFilter@37b97394, org.springframework.security.web.authentication.logout.LogoutFilter@6316b9e3, com.example.Project.config.JwtRequestFilter@1fae388c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4bdd6fe0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3aaeb65b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6f371390, org.springframework.security.web.session.SessionManagementFilter@7bd76b79, org.springframework.security.web.access.ExceptionTranslationFilter@5bc150e9, org.springframework.security.web.access.intercept.AuthorizationFilter@738a977d]
+12:24:32.305 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+12:24:32.335 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+12:24:32.356 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 7.554 seconds (process running for 8.369)
+12:25:12.400 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+12:25:12.401 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+12:25:12.403 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+12:25:12.428 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+12:25:12.458 [http-nio-8080-exec-1] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:25:12.461 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:25:12.463 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+12:25:12.852 [http-nio-8080-exec-1] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+12:33:14.018 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /register
+12:33:14.021 [http-nio-8080-exec-2] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:33:14.022 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:33:14.022 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /register
+12:33:14.037 [http-nio-8080-exec-2] INFO  c.e.P.c.RegistrationController - Received registration request for user with email: nunekarapetyan59@gmail.com
+12:33:14.037 [http-nio-8080-exec-2] INFO  c.e.P.service.RegistrationService - Registering user with email: nunekarapetyan59@gmail.com
+12:33:14.037 [http-nio-8080-exec-2] INFO  c.e.P.service.RegistrationService - Password is strong!
+12:33:18.347 [http-nio-8080-exec-2] INFO  c.e.P.service.RegistrationService - Confirmation Token: 47f09d85-a732-45f6-b577-b3cde45cda6a
+12:33:18.347 [http-nio-8080-exec-2] INFO  c.e.P.c.RegistrationController - Registration result: Verify email by the link sent on your email address
+12:34:19.178 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /confirm-account?token=47f09d85-a732-45f6-b577-b3cde45cda6a
+12:34:19.178 [http-nio-8080-exec-7] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:34:19.179 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:34:19.179 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /confirm-account?token=47f09d85-a732-45f6-b577-b3cde45cda6a
+12:34:19.187 [http-nio-8080-exec-7] INFO  c.e.P.c.RegistrationController - Received confirmation token: 47f09d85-a732-45f6-b577-b3cde45cda6a
+12:34:19.213 [http-nio-8080-exec-7] INFO  c.e.P.c.RegistrationController - Confirmation result: success
+12:34:19.229 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /success
+12:34:19.230 [http-nio-8080-exec-5] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:34:19.231 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:34:19.231 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /success
+12:34:19.581 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /favicon.ico
+12:34:19.581 [http-nio-8080-exec-8] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+12:34:19.581 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+12:34:19.590 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+12:34:19.590 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+17:58:18.852 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h22m19s878ms193µs).
+19:30:18.262 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m57s730ms202µs).
+19:47:40.195 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+19:47:40.217 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+19:47:40.224 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+21:09:59.240 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+21:09:59.275 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 20224 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+21:09:59.275 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+21:10:00.002 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:10:00.052 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 5 JPA repository interfaces.
+21:10:00.659 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+21:10:00.667 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:10:00.669 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:10:00.669 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+21:10:00.714 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:10:00.714 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1378 ms
+21:10:00.810 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:10:00.863 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+21:10:00.919 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+21:10:01.122 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+21:10:01.143 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:10:01.441 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e951fb1
+21:10:01.442 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:10:02.297 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+21:10:02.384 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:10:02.603 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+21:10:03.175 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:10:03.383 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4bdd6fe0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3aaeb65b, org.springframework.security.web.context.SecurityContextHolderFilter@71f9f8ba, org.springframework.security.web.header.HeaderWriterFilter@2aaf7354, org.springframework.web.filter.CorsFilter@25f688d5, org.springframework.security.web.authentication.logout.LogoutFilter@726e780a, com.example.Project.config.JwtRequestFilter@74ea1cd0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3ea3b20d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@17856f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b1434ce, org.springframework.security.web.session.SessionManagementFilter@56da2437, org.springframework.security.web.access.ExceptionTranslationFilter@2291fb1, org.springframework.security.web.access.intercept.AuthorizationFilter@43165282]
+21:10:03.641 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+21:10:03.654 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+21:10:03.660 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 4.699 seconds (process running for 5.941)
+21:10:08.123 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:10:08.123 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+21:10:08.124 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+21:10:08.136 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /users/getProfile
+21:10:08.154 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:10:08.248 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:10:08.254 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /error
+21:10:08.254 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:10:17.352 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /authenticate
+21:10:17.355 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+21:10:17.355 [http-nio-8080-exec-6] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+21:10:17.355 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:10:17.356 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+21:10:17.760 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+21:10:19.035 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:10:19.047 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:11:08.675 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:11:08.688 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:11:22.814 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /users/setPhoneNumber
+21:11:22.816 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /users/setPhoneNumber
+21:11:22.839 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /users/setPhoneNumber
+21:11:22.856 [http-nio-8080-exec-8] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.StringIndexOutOfBoundsException: Range [1, 13) out of bounds for length 2] with root cause
+java.lang.StringIndexOutOfBoundsException: Range [1, 13) out of bounds for length 2
+	at java.base/jdk.internal.util.Preconditions$1.apply(Preconditions.java:55)
+	at java.base/jdk.internal.util.Preconditions$1.apply(Preconditions.java:52)
+	at java.base/jdk.internal.util.Preconditions$4.apply(Preconditions.java:213)
+	at java.base/jdk.internal.util.Preconditions$4.apply(Preconditions.java:210)
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:98)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckFromToIndex(Preconditions.java:112)
+	at java.base/jdk.internal.util.Preconditions.checkFromToIndex(Preconditions.java:349)
+	at java.base/java.lang.String.checkBoundsBeginEnd(String.java:4589)
+	at java.base/java.lang.String.substring(String.java:2703)
+	at com.example.Project.service.UserService.setPhoneNumber(UserService.java:242)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:352)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:385)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717)
+	at com.example.Project.service.UserService$$SpringCGLIB$$0.setPhoneNumber(<generated>)
+	at com.example.Project.controller.UserController.setPhoneNumber(UserController.java:187)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:262)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at com.example.Project.config.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:98)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:225)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+21:11:22.862 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /error
+21:11:22.863 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:13:48.335 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:13:48.347 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:15:18.937 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:15:18.952 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:15:20.282 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:15:20.296 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:15:20.748 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:15:20.761 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:15:21.184 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:15:21.198 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:15:40.428 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:15:40.439 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:15:41.415 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:15:41.426 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:16:12.467 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:16:12.478 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:18:47.303 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:18:47.317 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:18:48.266 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:18:48.277 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:18:49.871 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:18:49.883 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:18:50.620 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:18:50.633 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:18:51.138 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:18:51.150 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:18:51.567 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:18:51.577 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:19:24.748 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:19:24.759 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:19:26.699 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:19:26.708 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:19:27.243 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:19:27.255 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:19:27.940 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:19:27.951 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:19:28.559 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:19:28.571 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:19:53.142 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:19:53.153 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:20:21.354 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:20:21.366 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:20:22.178 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:20:22.190 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:20:22.731 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:20:22.740 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:43:22.285 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /authenticate
+21:43:22.287 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+21:43:22.287 [http-nio-8080-exec-8] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+21:43:22.288 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:43:22.288 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+21:43:22.421 [http-nio-8080-exec-8] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+21:43:23.707 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+21:43:23.708 [http-nio-8080-exec-9] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+21:43:23.708 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:43:23.708 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+21:43:23.834 [http-nio-8080-exec-9] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+21:43:48.524 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+21:43:48.526 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+21:43:48.531 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+21:43:52.358 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+21:43:52.386 [main] INFO  c.example.Project.ProjectApplication - Starting ProjectApplication using Java 18.0.2 with PID 32280 (C:\Users\Nune_\OneDrive\Desktop\Project\target\classes started by Nune_ in C:\Users\Nune_\OneDrive\Desktop\Project)
+21:43:52.387 [main] INFO  c.example.Project.ProjectApplication - No active profile set, falling back to 1 default profile: "default"
+21:43:52.850 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+21:43:52.893 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 38 ms. Found 5 JPA repository interfaces.
+21:43:53.501 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+21:43:53.510 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+21:43:53.512 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+21:43:53.512 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.17]
+21:43:53.555 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+21:43:53.555 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1115 ms
+21:43:53.643 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+21:43:53.687 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.1.Final
+21:43:53.738 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+21:43:53.925 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+21:43:53.947 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+21:43:54.235 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@236b4a44
+21:43:54.237 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+21:43:55.099 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+21:43:55.173 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+21:43:55.360 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+21:43:55.953 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+21:43:56.153 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@186f7553, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44835de9, org.springframework.security.web.context.SecurityContextHolderFilter@28fa0ff8, org.springframework.security.web.header.HeaderWriterFilter@6d543ec2, org.springframework.web.filter.CorsFilter@734d870f, org.springframework.security.web.authentication.logout.LogoutFilter@1703e50d, com.example.Project.config.JwtRequestFilter@712eb075, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4698ae6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@557ed49a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2542e124, org.springframework.security.web.session.SessionManagementFilter@1b6824c1, org.springframework.security.web.access.ExceptionTranslationFilter@2c48eb31, org.springframework.security.web.access.intercept.AuthorizationFilter@17e96b3c]
+21:43:56.419 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+21:43:56.433 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+21:43:56.441 [main] INFO  c.example.Project.ProjectApplication - Started ProjectApplication in 4.334 seconds (process running for 4.863)
+21:43:57.919 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+21:43:57.919 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+21:43:57.920 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+21:43:57.930 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+21:43:57.954 [http-nio-8080-exec-1] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+21:43:57.957 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:43:57.958 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+21:43:58.205 [http-nio-8080-exec-1] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+21:44:00.066 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+21:44:00.068 [http-nio-8080-exec-6] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+21:44:00.068 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:44:00.068 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+21:44:00.147 [http-nio-8080-exec-6] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Failed to authenticate since password does not match stored value
+21:44:16.293 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing POST /authenticate
+21:44:16.295 [http-nio-8080-exec-10] WARN  c.e.Project.config.JwtRequestFilter - JWT Token does not begin with Bearer String
+21:44:16.296 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+21:44:16.296 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured POST /authenticate
+21:44:16.426 [http-nio-8080-exec-10] DEBUG o.s.s.a.d.DaoAuthenticationProvider - Authenticated user
+21:44:18.054 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /users/getProfile
+21:44:18.057 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /users/getProfile
+21:44:18.118 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /users/getProfile
+21:52:20.042 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m55s635ms294µs700ns).
